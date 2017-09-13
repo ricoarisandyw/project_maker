@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_250sdp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imgV_slider"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_titleSlider"
+        android:textStyle="bold"
+        android:text="Judul"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textSize="@dimen/_18sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imgV_slider"
+        android:textColor="@color/Black"/>
+    <TextView
+        android:layout_width="@dimen/_240sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textSize="@dimen/_12sdp"
+        android:textAlignment="center"
+        android:id="@+id/txt_slider"
+        android:text="Prosess Menbuatnya sangat mengenakkan................"
+        android:layout_below="@+id/txt_titleSlider"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

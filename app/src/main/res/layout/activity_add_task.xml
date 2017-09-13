@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mrabid.pro_maker.AddTaskActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_sign"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/rlt_lyt_task_2"
+        android:padding="@dimen/_10sdp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title"
+            android:textColor="@color/Theme"
+            android:id="@+id/edt_title_task"
+            android:textSize="@dimen/_18sdp"/>
+
+        <EditText
+            android:id="@+id/edt_desc_task"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            android:lineSpacingMultiplier="1"
+            android:gravity="top"
+            android:textSize="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_below="@+id/edt_title_task"
+            android:hint="Describe here"
+            android:textColor="@color/Black"
+            android:inputType="textPostalAddress" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_below="@+id/rlt_lyt_task_2"
+        android:id="@+id/txt_line"
+        android:background="@color/Theme"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:id="@+id/rlt_datePicker"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@+id/txt_line">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_date_line"
+            android:background="@drawable/ic_date_range_black_24dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick Date Line"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/img_date_line"
+            android:textColor="@color/Black"
+            android:id="@+id/txt_dateline"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlt_datePicker"
+        android:id="@+id/rlt_timePicker"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_time"
+            android:background="@drawable/ic_access_time_black_24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/txt_time"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/Black"
+            android:layout_toRightOf="@+id/img_time"
+            android:layout_height="wrap_content"
+            android:text="Pick Time Line"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlt_timePicker"
+        android:id="@+id/rlt_project"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_project"
+            android:background="@drawable/ic_folder_open_black_24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/txt_project"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/Black"
+            android:layout_toRightOf="@+id/img_project"
+            android:layout_height="wrap_content"
+            android:text="Choose Project/Task Before"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/Theme"
+        android:text="Create"
+        android:textColor="@color/White"
+        android:layout_below="@id/rlt_project"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

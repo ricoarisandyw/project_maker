@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mrabid.pro_maker.MainActivity">
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_image_slider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_350sdp">
+
+    </android.support.v4.view.ViewPager>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_10sdp"
+        android:id="@+id/sliderDots"
+        android:layout_below="@+id/vp_image_slider"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="horizontal"
+        android:layout_above="@+id/btn_signIn"
+        android:gravity="center_vertical|center_horizontal">
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:id="@+id/bt_signIn"
+        android:layout_below="@+id/sliderDots"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_centerHorizontal="true"
+        android:text="Sign In"
+        android:textColor="@color/White"
+        android:background="@color/Theme"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/rlt_signUp"
+        android:layout_below="@+id/bt_signIn"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:id="@+id/txt_before_signUp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text=" Sign Up Now!"
+            android:textColor="@color/Theme"
+            android:id="@+id/txt_signUp"
+            android:layout_toRightOf="@+id/txt_before_signUp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
