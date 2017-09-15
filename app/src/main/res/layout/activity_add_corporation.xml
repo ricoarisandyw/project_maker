@@ -2,84 +2,136 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="com.mrabid.pro_maker.AddCorporationActivity">
 
-    tools:context="com.mrabid.pro_maker.Activity.AddCorporationActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_sign"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-        android:padding="@dimen/_10sdp"
-        android:id="@+id/rlt_addCorporation1"
-        android:layout_below="@+id/toolbar">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your Coorporation"
-            android:textSize="@dimen/_20sdp"
-            android:textColor="@color/Black"
-            android:id="@+id/txt_jdlCorporation"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:background="@color/background"
+            android:layout_below="@+id/toolbar"
+            android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/_10sdp"
-            android:background="@color/White"
-            android:id="@+id/rlt_addCorporation"
-            android:layout_below="@id/txt_jdlCorporation">
+            android:id="@+id/rlt_addCorporation1"
+            android:layout_below="@+id/toolbar">
+
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name :"
-                android:textColor="@color/Themes"
+                android:text="Add Your Coorporation"
+                android:textSize="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:textSize="@dimen/_16sdp"
-                android:id="@+id/txt_nameCoorporation"/>
+                android:textColor="@color/Theme"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:id="@+id/txt_jdlCorporation"/>
 
-            <EditText
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/edt_nameCoorporation"
-                android:hint="Nama Perusahaan"
-                android:layout_toRightOf="@+id/txt_nameCoorporation"
-                android:inputType="textPersonName"
-                android:layout_marginLeft="@dimen/_20sdp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Address :"
-                android:textColor="@color/Themes"
-                android:textSize="@dimen/_16sdp"
-                android:id="@+id/txt_addressCoorporation"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_below="@id/txt_nameCoorporation"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_toRightOf="@+id/txt_addressCoorporation"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:textSize="@dimen/_14sdp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:inputType="textMultiLine"
-                android:scrollbarAlwaysDrawVerticalTrack="true"
-                android:gravity="top"
-                android:hint="Alamat Perusahaan"
-                android:layout_below="@+id/txt_nameCoorporation"/>
+                android:padding="@dimen/_10sdp"
+                android:background="@color/White"
+                android:id="@+id/rlt_addCorporation"
+                android:layout_below="@id/txt_jdlCorporation">
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name     :"
+                    android:textColor="@color/Themes"
+                    android:textSize="@dimen/_16sdp"
+                    android:id="@+id/txt_nameCoorporation"
+                    android:layout_alignBaseline="@+id/edt_nameCoorporation"
+                    android:layout_alignBottom="@+id/edt_nameCoorporation"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edt_nameCoorporation"
+                    android:hint="Nama Perusahaan"
+                    android:drawableBottom="@color/Themes"
+                    android:inputType="textPersonName"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/edt_addressCoorporation" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address :"
+                    android:textColor="@color/Themes"
+                    android:textSize="@dimen/_16sdp"
+                    android:id="@+id/txt_addressCoorporation"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_below="@id/txt_nameCoorporation"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_toRightOf="@+id/txt_addressCoorporation"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+                    android:id="@+id/edt_addressCoorporation"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableBottom="@color/Themes"
+                    android:inputType="textMultiLine"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:gravity="top"
+                    android:hint="Alamat Perusahaan"
+                    android:layout_below="@+id/txt_nameCoorporation"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Describe :"
+                    android:textColor="@color/Themes"
+                    android:textSize="@dimen/_16sdp"
+                    android:id="@+id/txt_describeCoorporation"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_below="@id/edt_addressCoorporation"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_toRightOf="@+id/txt_addressCoorporation"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableBottom="@color/Themes"
+                    android:inputType="textMultiLine"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:gravity="top"
+                    android:hint="Deskripsikan perusahaan anda "
+                    android:id="@+id/edt_describeCoorporation"
+                    android:layout_below="@+id/edt_addressCoorporation"/>
 
 
-    </RelativeLayout>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Create"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/Themes"
+                    android:textColor="@color/White"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:id="@+id/btn_createCoorportion"
+                    android:layout_below="@+id/edt_describeCoorporation"/>
+
+                </RelativeLayout>
 
 
+            </RelativeLayout>
+
+        </ScrollView>
 </RelativeLayout>

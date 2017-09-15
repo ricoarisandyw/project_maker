@@ -3,7 +3,6 @@ package com.mrabid.pro_maker.Adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,22 +16,22 @@ import com.mrabid.pro_maker.R;
 
 import java.util.List;
 
-public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> {
+public class RecycleViewPersonalAdapter extends RecyclerView.Adapter<RecycleViewPersonalAdapter.ViewHolder> {
     Context context;
     List<Personal> listPersonal;
 
-    public RecycleViewAdapter(Context context, List<Personal> listPersonal) {
+    public RecycleViewPersonalAdapter(Context context, List<Personal> listPersonal) {
         this.context = context;
         this.listPersonal = listPersonal;
     }
 
     @Override
-    public RecycleViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecycleViewPersonalAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.personal_view,null));
     }
 
     @Override
-    public void onBindViewHolder(RecycleViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecycleViewPersonalAdapter.ViewHolder holder, int position) {
         final Personal p = listPersonal.get(position);
 
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.cm);
