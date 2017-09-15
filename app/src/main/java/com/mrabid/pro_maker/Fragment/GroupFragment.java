@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,10 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mrabid.pro_maker.AddTaskActivity;
-import com.mrabid.pro_maker.Project;
+import com.mrabid.pro_maker.Activity.AddTaskActivity;
 import com.mrabid.pro_maker.R;
-import com.mrabid.pro_maker.SettingActivity;
+import com.mrabid.pro_maker.Activity.SettingActivity;
 
 public class GroupFragment extends Fragment {
 

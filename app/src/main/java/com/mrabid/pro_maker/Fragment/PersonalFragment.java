@@ -1,8 +1,6 @@
 package com.mrabid.pro_maker.Fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -14,14 +12,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.mrabid.pro_maker.Adapter.RecycleViewAdapter;
-import com.mrabid.pro_maker.AddTaskActivity;
-import com.mrabid.pro_maker.Helper.CircleConverter;
+import com.mrabid.pro_maker.Activity.AddTaskActivity;
 import com.mrabid.pro_maker.Model.Personal;
 import com.mrabid.pro_maker.R;
-import com.mrabid.pro_maker.SettingActivity;
+import com.mrabid.pro_maker.Activity.SettingActivity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,24 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
+            <action android:name="android.intent.action.MAIN" />
+        </activity>
+        <activity
+            android:name=".Activity.SignUpActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activity.SignInActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Project" />
+        <activity android:name=".Activity.AddTaskActivity" />
+        <activity android:name=".Activity.SettingActivity" />
+        <activity android:name=".Activity.AddProjectActivity" />
+        <activity android:name=".Activity.AddCorporationActivity" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SignUpActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".SignInActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".Project" />
-        <activity android:name=".AddTaskActivity" />
-        <activity android:name=".SettingActivity" />
-        <activity android:name=".AddProjectActivity" />
-        <activity android:name=".AddCorporationActivity"></activity>
     </application>
 
 </manifest>

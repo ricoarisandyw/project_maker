@@ -1,4 +1,4 @@
-package com.mrabid.pro_maker;
+package com.mrabid.pro_maker.Activity;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import com.mrabid.pro_maker.R;
 
 public class AddCorporationActivity extends AppCompatActivity {
 

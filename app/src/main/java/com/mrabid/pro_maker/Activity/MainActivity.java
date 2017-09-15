@@ -1,4 +1,4 @@
-package com.mrabid.pro_maker;
+package com.mrabid.pro_maker.Activity;
 
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mrabid.pro_maker.Adapter.SlideAdapter;
+import com.mrabid.pro_maker.R;
 
 public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;

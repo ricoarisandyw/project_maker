@@ -1,15 +1,15 @@
-package com.mrabid.pro_maker;
+package com.mrabid.pro_maker.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
+
+import com.mrabid.pro_maker.R;
 
 public class SignUpActivity extends AppCompatActivity {
 
