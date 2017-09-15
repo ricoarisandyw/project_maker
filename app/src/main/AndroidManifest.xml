@@ -18,15 +18,21 @@
         </activity>
         <activity
             android:name=".SignUpActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".SignInActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Project" />
-        <activity android:name=".AddTaskActivity" />
+        <activity android:name=".Project"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AddTaskActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".SettingActivity" />
-        <activity android:name=".AddProjectActivity" />
-        <activity android:name=".AddCorporationActivity"></activity>
+        <activity android:name=".AddProjectActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AddCorporationActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

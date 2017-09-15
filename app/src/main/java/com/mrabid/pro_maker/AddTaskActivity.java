@@ -8,7 +8,9 @@ import android.graphics.drawable.Drawable;
 import java.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
@@ -82,9 +84,14 @@ public class AddTaskActivity extends AppCompatActivity {
         });
     }
 
+    public void showPopup(View view){
+        PopupMenu popupMenu = new PopupMenu(this,view);
+        MenuInflater menuInflater = popupMenu.getMenuInflater();
+        menuInflater.inflate(R.menu.menu_group,popupMenu.getMenu());
+        popupMenu.show();
+    }
 
 
-//
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

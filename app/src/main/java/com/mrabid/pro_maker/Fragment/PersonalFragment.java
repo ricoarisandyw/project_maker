@@ -1,8 +1,6 @@
 package com.mrabid.pro_maker.Fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -14,11 +12,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.mrabid.pro_maker.Adapter.RecycleViewAdapter;
+import com.mrabid.pro_maker.Adapter.RecycleViewPersonalAdapter;
 import com.mrabid.pro_maker.AddTaskActivity;
-import com.mrabid.pro_maker.Helper.CircleConverter;
 import com.mrabid.pro_maker.Model.Personal;
 import com.mrabid.pro_maker.R;
 import com.mrabid.pro_maker.SettingActivity;
@@ -46,7 +42,7 @@ public class PersonalFragment extends Fragment {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new RecycleViewAdapter(getActivity(),personal));
+        recyclerView.setAdapter(new RecycleViewPersonalAdapter(getActivity(),personal));
     }
 
     @Override
