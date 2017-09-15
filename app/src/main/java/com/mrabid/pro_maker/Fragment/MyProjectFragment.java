@@ -62,6 +62,6 @@ public class MyProjectFragment extends Fragment {
 //    @Override
 //    public void onResume(){
 //        super.onResume();
-//        ((Project) getActivity()).setActionBarTitle("MyProject");
+//        ((Projects) getActivity()).setActionBarTitle("MyProject");
 //    }
 }

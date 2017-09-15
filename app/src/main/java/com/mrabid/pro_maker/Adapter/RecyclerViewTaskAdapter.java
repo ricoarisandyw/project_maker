@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.mrabid.pro_maker.Model.Task;
 import com.mrabid.pro_maker.R;
-
 import java.util.List;
 
 public class RecyclerViewTaskAdapter extends RecyclerView.Adapter<RecyclerViewTaskAdapter.ViewHolder> {

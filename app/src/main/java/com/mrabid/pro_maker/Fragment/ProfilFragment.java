@@ -40,6 +40,6 @@ public class ProfilFragment extends Fragment {
 //    @Override
 //    public void onResume(){
 //        super.onResume();
-//        ((Project) getActivity()).setActionBarTitle("MyProfil");
+//        ((Projects) getActivity()).setActionBarTitle("MyProfil");
 //    }
 }
