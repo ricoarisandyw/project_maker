@@ -25,7 +25,8 @@
         <activity android:name=".Project" />
         <activity android:name=".AddTaskActivity" />
         <activity android:name=".SettingActivity" />
-        <activity android:name=".AddProjectActivity"></activity>
+        <activity android:name=".AddProjectActivity" />
+        <activity android:name=".AddCorporationActivity"></activity>
     </application>
 
 </manifest>

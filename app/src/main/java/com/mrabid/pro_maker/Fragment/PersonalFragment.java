@@ -1,26 +1,25 @@
 package com.mrabid.pro_maker.Fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.ImageView;
 
-import com.mrabid.pro_maker.Adapter.ListViewAdapter;
+import com.mrabid.pro_maker.Adapter.RecycleViewAdapter;
 import com.mrabid.pro_maker.AddTaskActivity;
+import com.mrabid.pro_maker.Helper.CircleConverter;
 import com.mrabid.pro_maker.Model.Personal;
-import com.mrabid.pro_maker.Project;
 import com.mrabid.pro_maker.R;
 import com.mrabid.pro_maker.SettingActivity;
 
@@ -29,55 +28,36 @@ import java.util.List;
 
 public class PersonalFragment extends Fragment {
 
-    private ListView listView;
-    private ListViewAdapter listViewAdapter;
-    private List<Personal> personalList;
+
+    RecyclerView recyclerView;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listView = (ListView)getActivity().findViewById(R.id.listViewPersonal);
-        getPersonalList();
-        setAdapters();
+        recyclerView = (RecyclerView)getActivity().findViewById(R.id.rcyView_personal);
 
+        coba();
+    }
+
+    public void coba(){
+        List<Personal> personal = new ArrayList<>();
+        for(int i = 0;i<10;i++)
+        personal.add(new Personal(R.drawable.cm,"abid Ganteng","saya ingin bahagia",R.id.img_about_personal));
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(new RecycleViewAdapter(getActivity(),personal));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         return inflater.inflate(R.layout.personal_fragment, container, false);
-
-
-    }
-
-    private List<Personal> getPersonalList() {
-            personalList = new ArrayList<>();
-            personalList.add(new Personal(R.drawable.cm,"Abid Ganteng","Aku bahagia",R.drawable.ic_info_black_24dp));
-            personalList.add(new Personal(R.drawable.cm,"Abid Ganteng","Aku bahagia",R.drawable.ic_info_black_24dp));
-            personalList.add(new Personal(R.drawable.cm,"Abid Ganteng","Aku bahagia",R.drawable.ic_info_black_24dp));
-            personalList.add(new Personal(R.drawable.cm,"Abid Ganteng","Aku bahagia",R.drawable.ic_info_black_24dp));
-            personalList.add(new Personal(R.drawable.cm,"Abid Ganteng","Aku bahagia",R.drawable.ic_info_black_24dp));
-            personalList.add(new Personal(R.drawable.cm,"Abid Ganteng","Aku bahagia",R.drawable.ic_info_black_24dp));
-            personalList.add(new Personal(R.drawable.cm,"Abid Ganteng","Aku bahagia",R.drawable.ic_info_black_24dp));
-            return personalList;
-    }
-
-    AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener(){
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Toast.makeText(getActivity(), "Succes", Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    private void setAdapters(){
-        listViewAdapter = new ListViewAdapter(getActivity(),R.layout.personal_fragment,personalList);
-        listView.setAdapter(listViewAdapter);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
     }
 
     @Override

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.mrabid.pro_maker.AddCorporationActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_sign"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:padding="@dimen/_10sdp"
+        android:id="@+id/rlt_addCorporation1"
+        android:layout_below="@+id/toolbar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Coorporation"
+            android:textSize="@dimen/_20sdp"
+            android:textColor="@color/Black"
+            android:id="@+id/txt_jdlCorporation"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_10sdp"
+            android:background="@color/White"
+            android:id="@+id/rlt_addCorporation"
+            android:layout_below="@id/txt_jdlCorporation">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name :"
+                android:textColor="@color/Themes"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_16sdp"
+                android:id="@+id/txt_nameCoorporation"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edt_nameCoorporation"
+                android:hint="Nama Perusahaan"
+                android:layout_toRightOf="@+id/txt_nameCoorporation"
+                android:inputType="textPersonName"
+                android:layout_marginLeft="@dimen/_20sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address :"
+                android:textColor="@color/Themes"
+                android:textSize="@dimen/_16sdp"
+                android:id="@+id/txt_addressCoorporation"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_below="@id/txt_nameCoorporation"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_toRightOf="@+id/txt_addressCoorporation"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:inputType="textMultiLine"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:gravity="top"
+                android:hint="Alamat Perusahaan"
+                android:layout_below="@+id/txt_nameCoorporation"/>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

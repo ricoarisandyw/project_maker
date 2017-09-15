@@ -60,6 +60,7 @@ public class AddProjectActivity extends AppCompatActivity {
                 },day,month,year);
                 datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
                 datePickerDialog.show();
+                
             }
         });
 

@@ -37,7 +37,7 @@
             android:layout_below="@+id/edt_title_task"
             android:hint="Describe here"
             android:textColor="@color/Black"
-            android:inputType="textPostalAddress" />
+            android:inputType="textMultiLine" />
     </RelativeLayout>
 
     <TextView
