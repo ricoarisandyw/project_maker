@@ -28,7 +28,7 @@ public class RecyclerViewTaskAdapter extends RecyclerView.Adapter<RecyclerViewTa
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         final Task p = listTask.get(position);
-        holder.pemberi.setText(""+p.getPemberi());
+        holder.pemberi.setText(""+p.getid_doer());
         holder.nama.setText(""+p.getName());
         holder.status.setText(""+p.getStatus());
     }

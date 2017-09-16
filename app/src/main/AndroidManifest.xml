@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mrabid.pro_maker">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,16 +21,18 @@
             android:name=".Activity.SignInActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".Project" />
-        <activity android:name=".Activity.AddTaskActivity" />
+        <activity android:name=".Activity..AddTaskActivity" />
         <activity android:name=".Activity.SettingActivity" />
         <activity android:name=".Activity.AddProjectActivity" />
         <activity android:name=".Activity.AddCorporationActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.myCorporationActivity"></activity>
     </application>
 
 </manifest>

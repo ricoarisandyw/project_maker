@@ -16,11 +16,11 @@ import android.view.ViewGroup;
 
 import com.mrabid.pro_maker.Adapter.RecycleViewPersonalAdapter;
 import com.mrabid.pro_maker.Adapter.RecyclerViewTaskAdapter;
-import com.mrabid.pro_maker.AddTaskActivity;
+import com.mrabid.pro_maker.Activity.AddTaskActivity;
 import com.mrabid.pro_maker.Model.Task;
 import com.mrabid.pro_maker.Project;
 import com.mrabid.pro_maker.R;
-import com.mrabid.pro_maker.SettingActivity;
+import com.mrabid.pro_maker.Activity.SettingActivity;
 
 import java.util.ArrayList;
 import java.util.List;

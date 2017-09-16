@@ -1,4 +1,4 @@
-package com.mrabid.pro_maker;
+package com.mrabid.pro_maker.Activity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -28,6 +28,7 @@ import android.widget.TimePicker;
 
 import com.mrabid.pro_maker.Adapter.RecyclerViewProjectAdapter;
 import com.mrabid.pro_maker.Model.Projects;
+import com.mrabid.pro_maker.R;
 
 
 public class AddTaskActivity extends AppCompatActivity {

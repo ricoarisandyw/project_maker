@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.mrabid.pro_maker.Activity.AddCorporationActivity;
+import com.mrabid.pro_maker.Activity.myCorporationActivity;
 import com.mrabid.pro_maker.R;
 
 public class ProfilFragment extends Fragment {
@@ -19,11 +20,18 @@ public class ProfilFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button addCorporation = (Button)getActivity().findViewById(R.id.btn_addCorporation);
-
         addCorporation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),AddCorporationActivity.class);
+                startActivity(i);
+            }
+        });
+        Button myCorporation = (Button)getActivity().findViewById(R.id.btn_profil_myCorporation);
+        myCorporation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),myCorporationActivity.class);
                 startActivity(i);
             }
         });
