@@ -40,7 +40,7 @@ public class AddProjectActivity extends AppCompatActivity {
         final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
-        getSupportActionBar().setTitle("Create New Project");
+        getSupportActionBar().setTitle("Create New Projects");
         toolbar.setTitleTextColor(Color.WHITE);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 

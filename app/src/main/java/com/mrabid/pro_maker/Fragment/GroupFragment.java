@@ -58,7 +58,7 @@ public class GroupFragment extends Fragment {
 //    @Override
 //    public void onResume(){
 //        super.onResume();
-//        ((Project) getActivity()).setActionBarTitle("Group");
+//        ((Projects) getActivity()).setActionBarTitle("Group");
 //    }
 
 }

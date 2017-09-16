@@ -18,11 +18,11 @@ import com.mrabid.pro_maker.R;
 public class SlideAdapter extends PagerAdapter {
     private int[] image_resources = {R.drawable.cm,R.drawable.dr,R.drawable.templar,R.drawable.invo};
     private String[] describe =
-            {"    Welcome to Project Manager enjoy for using manage your project with easily, friendly and completely"
-            ,"    With Project Manager , you can create unlimited project with free account (without cost)"
+            {"    Welcome to Projects Manager enjoy for using manage your project with easily, friendly and completely"
+            ,"    With Projects Manager , you can create unlimited project with free account (without cost)"
             ,"    Find your partner or your employee just with barcode or email"
             ,"    Enjoy Premium Account with ......................................."};
-    private String[] titles = {"Project Manager","Unlimited Project","Easily Partner","Premium Account"};
+    private String[] titles = {"Projects Manager","Unlimited Projects","Easily Partner","Premium Account"};
     private Context ctx;
     private LayoutInflater layoutInflater;
 

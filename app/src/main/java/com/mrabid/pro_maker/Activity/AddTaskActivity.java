@@ -1,14 +1,22 @@
-package com.mrabid.pro_maker.Activity;
+package com.mrabid.pro_maker;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,19 +26,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.mrabid.pro_maker.R;
+import com.mrabid.pro_maker.Adapter.RecyclerViewProjectAdapter;
+import com.mrabid.pro_maker.Model.Projects;
 
 
 public class AddTaskActivity extends AppCompatActivity {
 
     private int hour, minute, day, month, year;
     TextView date,time;
+    Dialog dialogListTask;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        RelativeLayout btnProject = (RelativeLayout)findViewById(R.id.rlt_project);
         RelativeLayout btnDate = (RelativeLayout)findViewById(R.id.rlt_datePicker);
         RelativeLayout btnTime = (RelativeLayout)findViewById(R.id.rlt_timePicker);
         date = (TextView)findViewById(R.id.txt_dateline);
@@ -84,13 +95,29 @@ public class AddTaskActivity extends AppCompatActivity {
                 timePickerDialog.show();
             }
         });
-    }
 
-    public void showPopup(View view){
-        PopupMenu popupMenu = new PopupMenu(this,view);
-        MenuInflater menuInflater = popupMenu.getMenuInflater();
-        menuInflater.inflate(R.menu.menu_group,popupMenu.getMenu());
-        popupMenu.show();
+        btnProject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogListTask = new Dialog(AddTaskActivity.this);
+                dialogListTask.setContentView(R.layout.projectview_layout_task);
+                dialogListTask.setTitle("List Task");
+                List<Projects> listProjects = new ArrayList<Projects>();
+                listProjects.add(new Projects("ProjectMaker","aaa","13 Spetember 2017"));
+                listProjects.add(new Projects("aaa","aaa","aaaavv"));
+                listProjects.add(new Projects("aaa","aaa","aaaavv"));
+                listProjects.add(new Projects("aaa","aaa","aaaavv"));
+                listProjects.add(new Projects("aaa","aaa","aaaavv"));
+                RecyclerView rvListTask = (RecyclerView) dialogListTask.findViewById(R.id.rcyView_projectTask);
+                rvListTask.setHasFixedSize(true);
+                rvListTask.setLayoutManager(new LinearLayoutManager(AddTaskActivity.this));
+                rvListTask.setAdapter(new RecyclerViewProjectAdapter(AddTaskActivity.this,listProjects));
+                dialogListTask.show();
+
+
+
+            }
+        });
     }
 
 
@@ -104,5 +131,11 @@ public class AddTaskActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public String loadData(String name){
+        SharedPreferences prefs = getSharedPreferences("UserData", 0);
+        String data = prefs.getString(name,"");
+        return  data;
     }
 }

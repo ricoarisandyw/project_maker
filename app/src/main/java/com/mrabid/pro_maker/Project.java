@@ -51,7 +51,7 @@ public class Project extends AppCompatActivity {
         tabLayout.addTab(secondTab);
 
         TabLayout.Tab thirdTab = tabLayout.newTab();
-        //thirdTab.setText("Project");
+        //thirdTab.setText("Projects");
         thirdTab.setIcon(R.drawable.ic_today_black_72dp);
         tabLayout.addTab(thirdTab);
 
@@ -112,4 +112,5 @@ public class Project extends AppCompatActivity {
         }
         return false;
     }
+
 }
