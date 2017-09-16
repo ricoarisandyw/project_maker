@@ -34,7 +34,7 @@
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:layout_below="@id/txt_judul"
-                android:id="@+id/edt_email"
+                android:id="@+id/et_signin_email"
                 android:textColor="@color/Theme"
                 android:hint="Email"/>
 
@@ -42,9 +42,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_below="@id/edt_email"
+                android:layout_below="@id/et_signin_email"
                 android:textColor="@color/Theme"
-                android:id="@+id/edt_password"
+                android:id="@+id/et_signin_password"
                 android:inputType="textPassword"
                 android:hint="Password"/>
 
@@ -53,7 +53,7 @@
                 android:layout_width="@dimen/_200sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_35sdp"
-                android:layout_below="@+id/edt_password"
+                android:layout_below="@+id/et_signin_password"
                 android:layout_centerHorizontal="true"
                 android:background="@color/Theme"
                 android:textColor="@color/White"

@@ -1,6 +1,7 @@
 package com.mrabid.pro_maker;
 
 import android.app.LauncherActivity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -11,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.style.IconMarginSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.mrabid.pro_maker.Adapter.MyPagerAdapter;
 
@@ -26,10 +29,16 @@ public class Project extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
 
+        String id_user = loadData("id_user");
+        Toast.makeText(getApplicationContext(),  id_user, Toast.LENGTH_SHORT).show();
+        Log.d("Response", id_user);
+
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         getSupportActionBar().setTitle("MyTask");
+
+
 
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -113,4 +122,10 @@ public class Project extends AppCompatActivity {
         return false;
     }
 
+    public String loadData(String name){
+        SharedPreferences prefs = getSharedPreferences("UserData", 0);
+        String data = prefs.getString(name,"");
+        Log.d(name + " keluar:", data);
+        return data;
+    }
 }
