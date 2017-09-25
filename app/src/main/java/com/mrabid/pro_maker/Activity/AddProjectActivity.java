@@ -12,10 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -28,21 +31,29 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mrabid.pro_maker.Model.Corporation;
 import com.mrabid.pro_maker.R;
 import com.mrabid.pro_maker.ResponseGlobal;
+import com.mrabid.pro_maker.SharedPref;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class AddProjectActivity extends AppCompatActivity {
+public class AddProjectActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private int hour, minute, day, month, year;
     EditText etTitle, etDescription;
     TextView txtDate, txtTime;
     TextView txtProjectId;
+    ArrayAdapter<String> adapter;
+    Spinner spnListCorp;
+    ArrayList<String> ListCorporations = new ArrayList<String>();
+    ArrayList<Corporation> corporations = new ArrayList<>();
     Gson gson;
-    String gIdUser, gIdCorp;
+    String gIdUser, gIdCorp, gNameCorp;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,17 +64,26 @@ public class AddProjectActivity extends AppCompatActivity {
         RelativeLayout btnTime = (RelativeLayout)findViewById(R.id.rlt_timePickerP);
         txtDate = (TextView)findViewById(R.id.txt_datelineP);
         txtTime = (TextView)findViewById(R.id.txt_timeP);
-        txtProjectId = (TextView) findViewById(R.id.txt_addprojcet_idproject);
+
+        Init();
+
+        spnListCorp = (Spinner) findViewById(R.id.spn_addprojcet_namecorp);
+        adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, ListCorporations);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spnListCorp.setAdapter(adapter);
+        spnListCorp.setOnItemSelectedListener(this);
 
         Button btnSubmit = (Button) findViewById(R.id.btn_addproject_submit);
 
         etTitle = (EditText) findViewById(R.id.edt_title_task);
-        etDescription = (EditText) findViewById(R.id.edt_title_task);
+        etDescription = (EditText) findViewById(R.id.edt_desc_task);
 
-        gIdUser = loadData("id_user");
-        gIdCorp = loadData("id_corporation");
-        String gNameCorp = loadData("name_corporation");
-        txtProjectId.setText(gNameCorp);
+        gIdUser = SharedPref.loadData("id_user", AddProjectActivity.this);
+        gIdCorp = SharedPref.loadData("id_corporation", AddProjectActivity.this);
+        gNameCorp = SharedPref.loadData("name_corporation", AddProjectActivity.this);;
 
         //----------------toolbar-----------------------------//
         setSupportActionBar(toolbar);
@@ -162,8 +182,10 @@ public class AddProjectActivity extends AppCompatActivity {
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // error
                         Log.d("Response", error.toString());
+                        if(error.toString().contains("Timeout")){
+                            Submit();
+                        }
                     }
                 }
         ) {
@@ -180,13 +202,102 @@ public class AddProjectActivity extends AppCompatActivity {
             }
         };
         requestQueue.add(postRequest);
+    }
+
+    public void Init(){
+        final int[] id_corp = new int[1];
+        RequestQueue requestQueue = Volley.newRequestQueue(AddProjectActivity.this);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setDateFormat("M/d/yy hh:mm a");
+        gson = gsonBuilder.create();
+        String id_user = SharedPref.loadData("id_user", AddProjectActivity.this);
+        String url = "https://jcaproject.000webhostapp.com/projectmaker/api/corporation_filter.php?id_owner="+id_user;
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Response", response);
+                        AddProjectActivity.responseInit posts =  gson.fromJson(response, AddProjectActivity.responseInit.class);
+                        if(posts.getStatus()==1){
+                            Log.d("Response", response);
+                            int i = 0;
+                            for (Corporation corp : posts.getCorporation()){
+                                corporations.add(new Corporation(
+                                        corp.getId_corporation(),
+                                        corp.getName(),
+                                        corp.getDescription(),
+                                        corp.getAddress(),
+                                        corp.getId_owner(),
+                                        corp.getId_parent()
+                                ));
+                                ListCorporations.add(corp.getName());
+                                if(corp.getName().equalsIgnoreCase(gNameCorp)){
+                                    id_corp[0] = i;
+                                }
+                                i++;
+                            }
+                            adapter.notifyDataSetChanged();
+                            spnListCorp.setAdapter(adapter);
+                            spnListCorp.setSelection(id_corp[0]);
+                        }else{
+                            Toast.makeText(AddProjectActivity.this, response, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        if(error.toString().contains("Timeout")){
+                            Log.d("Response E", error.toString());
+                            Log.d("Response E", "Time Out");
+                        }
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                return params;
+            }
+        };
+        requestQueue.add(postRequest);
         //close --JSON--
     }
 
-    public String loadData(String name){
-        SharedPreferences prefs = getSharedPreferences("UserData", 0);
-        String data = prefs.getString(name,"");
-        Log.d(name + " keluar:", data);
-        return data;
+    public class responseInit{
+        private int status;
+        private ArrayList<Corporation> corporation;
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        public ArrayList<Corporation> getCorporation() {
+            return corporation;
+        }
+
+        public void setCorporation(ArrayList<Corporation> corporation) {
+            this.corporation = corporation;
+        }
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+        String id_corp = corporations.get(pos).getId_corporation();
+        Toast.makeText(AddProjectActivity.this, id_corp, Toast.LENGTH_SHORT).show();
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
     }
 }

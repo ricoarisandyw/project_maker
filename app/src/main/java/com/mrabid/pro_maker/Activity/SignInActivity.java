@@ -101,15 +101,21 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         progress.hide();
+                        responseLogin posts = new responseLogin();
+                        posts.setStatus(0);
                         Log.d("Response", response);
-                        responseLogin posts =  gson.fromJson(response, responseLogin.class);
+                        try{
+                            posts =  gson.fromJson(response, responseLogin.class);
+                        }catch(Exception e){
+                            Toast.makeText(SignInActivity.this, "Wrong Username/Password", Toast.LENGTH_SHORT).show();
+                        }
                         if(posts.getStatus()==1){
                             Intent i = new Intent(SignInActivity.this, Project.class);
                             String id_user = posts.getResult().get(0).getId_user();
                             saveData("id_user", id_user);
                             startActivity(i);
                         }else{
-                            Toast.makeText(SignInActivity.this, response, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, "Wrong Username/Password", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -119,6 +125,8 @@ public class SignInActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Response", error.toString());
+                        Toast.makeText(SignInActivity.this, "Server busy, Try Again", Toast.LENGTH_SHORT).show();
+                        progress.hide();
                     }
                 }
         ) {

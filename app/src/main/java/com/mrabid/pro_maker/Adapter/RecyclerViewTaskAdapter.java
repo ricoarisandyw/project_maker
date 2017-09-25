@@ -21,12 +21,11 @@ public class RecyclerViewTaskAdapter extends RecyclerView.Adapter<RecyclerViewTa
 
     @Override
     public RecyclerViewTaskAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.task_view,null));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_task,null));
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
         final Task p = listTask.get(position);
         holder.pemberi.setText(""+p.getid_doer());
         holder.nama.setText(""+p.getName());

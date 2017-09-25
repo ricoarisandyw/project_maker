@@ -22,19 +22,15 @@ public class MyProjectFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         return inflater.inflate(R.layout.my_project_fragment, container, false);
-
-
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
     }
 
     @Override
@@ -55,10 +51,4 @@ public class MyProjectFragment extends Fragment {
         }
         return false;
     }
-
-//    @Override
-//    public void onResume(){
-//        super.onResume();
-//        ((Projects) getActivity()).setActionBarTitle("MyProject");
-//    }
 }

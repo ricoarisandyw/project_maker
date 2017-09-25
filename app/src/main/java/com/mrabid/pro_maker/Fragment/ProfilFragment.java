@@ -50,7 +50,7 @@ public class ProfilFragment extends Fragment {
         myCorporation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(),myCorporationActivity.class);
+                Intent i = new Intent(getActivity(), myCorporationActivity.class);
                 startActivity(i);
             }
         });

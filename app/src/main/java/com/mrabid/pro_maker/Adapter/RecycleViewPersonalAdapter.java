@@ -27,7 +27,7 @@ public class RecycleViewPersonalAdapter extends RecyclerView.Adapter<RecycleView
 
     @Override
     public RecycleViewPersonalAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.personal_view,null));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_personal,null));
     }
 
     @Override

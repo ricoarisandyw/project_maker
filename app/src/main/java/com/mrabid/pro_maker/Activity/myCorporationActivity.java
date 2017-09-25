@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,11 +20,15 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mrabid.pro_maker.Adapter.RecyclerViewCorporationAdapter;
+import com.mrabid.pro_maker.Adapter.RecyclerViewTaskAdapter;
 import com.mrabid.pro_maker.Model.Corporation;
+import com.mrabid.pro_maker.Model.Task;
 import com.mrabid.pro_maker.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class myCorporationActivity extends AppCompatActivity {
@@ -29,22 +36,27 @@ public class myCorporationActivity extends AppCompatActivity {
     Gson gson;
     Button btnMyCorp;
     String id_user;
+    RecyclerView recyclerView;
+    RecyclerViewCorporationAdapter adapter;
+    List<Corporation> corporations = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_corporation);
 
-        btnMyCorp = (Button) findViewById(R.id.btn_mycorp_name);
         id_user = loadData("id_user");
+        Log.d("Reponse", id_user);
+
+        adapter = new RecyclerViewCorporationAdapter(myCorporationActivity.this, corporations);
+        recyclerView = (RecyclerView) findViewById(R.id.rcyView_Corporation);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(myCorporationActivity.this);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+        
         Init();
-        btnMyCorp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(myCorporationActivity.this, AddProjectActivity.class);
-                startActivity(i);
-            }
-        });
+
     }
 
     public void Init(){
@@ -62,12 +74,22 @@ public class myCorporationActivity extends AppCompatActivity {
                         Log.d("Response", response);
                         responseInit posts =  gson.fromJson(response, responseInit.class);
                         if(posts.getStatus()==1){
-                            btnMyCorp.setText(posts.getCorporation().get(0).getName());
-                            saveData("id_corporation",posts.getCorporation().get(0).getId_corporation().toString());
-                            saveData("name_corporation",posts.getCorporation().get(0).getName().toString());
+                            Log.d("Response", response);
+                            for (Corporation corp : posts.getCorporation()){
+                                corporations.add(new Corporation(
+                                        corp.getId_corporation(),
+                                        corp.getName(),
+                                        corp.getDescription(),
+                                        corp.getAddress(),
+                                        corp.getId_owner(),
+                                        corp.getId_parent()
+                                ));
+                                Log.d("Response Name", corp.getName());
+                            }
                         }else{
                             Toast.makeText(myCorporationActivity.this, response, Toast.LENGTH_SHORT).show();
                         }
+                        adapter.notifyDataSetChanged();
                     }
                 },
                 new Response.ErrorListener()
@@ -75,7 +97,10 @@ public class myCorporationActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Response", error.toString());
+                        if(error.toString().contains("Timeout")){
+                            Log.d("Response E", error.toString());
+                            Log.d("Response E", "Time Out");
+                        }
                     }
                 }
         ) {

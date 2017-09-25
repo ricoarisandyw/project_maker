@@ -12,6 +12,15 @@ public class Corporation {
     private String description;
     private String id_parent;
 
+    public Corporation(String id_corporation, String name, String description, String address, String id_owner, String id_parent) {
+        this.id_corporation = id_corporation;
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.id_owner = id_owner;
+        this.id_parent = id_parent;
+    }
+
 
     public String getId_corporation() {
         return id_corporation;

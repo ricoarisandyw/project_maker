@@ -25,11 +25,9 @@ import android.widget.DatePicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
 import com.mrabid.pro_maker.Adapter.RecyclerViewProjectAdapter;
 import com.mrabid.pro_maker.Model.Projects;
 import com.mrabid.pro_maker.R;
-
 
 public class AddTaskActivity extends AppCompatActivity {
 
@@ -59,7 +57,6 @@ public class AddTaskActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         //----------------datepicker-----------------------//
-
         btnDate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Calendar  c = Calendar.getInstance();
@@ -114,9 +111,6 @@ public class AddTaskActivity extends AppCompatActivity {
                 rvListTask.setLayoutManager(new LinearLayoutManager(AddTaskActivity.this));
                 rvListTask.setAdapter(new RecyclerViewProjectAdapter(AddTaskActivity.this,listProjects));
                 dialogListTask.show();
-
-
-
             }
         });
     }

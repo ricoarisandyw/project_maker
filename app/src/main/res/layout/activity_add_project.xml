@@ -98,10 +98,10 @@
                 android:layout_height="wrap_content"
                 android:text="Pick Time Line"/>
 
-            <TextView
+            <Spinner
                 android:layout_width="wrap_content"
                 android:layout_below="@id/txt_timeP"
-                android:id="@+id/txt_addprojcet_idproject"
+                android:id="@+id/spn_addprojcet_namecorp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:textColor="@color/Black"
                 android:layout_toRightOf="@+id/img_time"

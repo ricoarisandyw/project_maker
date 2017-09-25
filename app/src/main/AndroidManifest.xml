@@ -21,7 +21,7 @@
             android:name=".Activity.SignInActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".Project" />
-        <activity android:name=".Activity..AddTaskActivity" />
+        <activity android:name=".Activity.AddTaskActivity" />
         <activity android:name=".Activity.SettingActivity" />
         <activity android:name=".Activity.AddProjectActivity" />
         <activity android:name=".Activity.AddCorporationActivity" />
@@ -32,7 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.myCorporationActivity"></activity>
+        <activity android:name=".Activity.myCorporationActivity"
+            android:label="My Corporation"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
     </application>
 
 </manifest>
