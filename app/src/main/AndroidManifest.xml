@@ -32,10 +32,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.myCorporationActivity"
-            android:label="My Corporation"
-            android:theme="@style/Theme.AppCompat">
-        </activity>
+        <activity android:name=".Activity.myCorporationActivity" />
+        <activity android:name=".Activity.ChatActivity"></activity>
     </application>
 
 </manifest>
