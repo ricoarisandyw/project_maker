@@ -44,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="-40.000dp"
+            android:id="@+id/txt_date_received"
             android:layout_toRightOf="@+id/txt_content_received"
             android:layout_alignBottom="@+id/txt_content_received"
             android:text="19:10"/>

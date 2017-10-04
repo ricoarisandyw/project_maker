@@ -25,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="-40.000dp"
+            android:id="@+id/txt_date_sent"
             android:layout_toLeftOf="@+id/txt_content_sent"
             android:layout_alignBottom="@+id/txt_content_sent"
             android:text="19:10"/>

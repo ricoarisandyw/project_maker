@@ -12,7 +12,7 @@
         layout="@layout/toolbar_sign" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/reyclerview_message_list"
+        android:id="@+id/recyclerview_message_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar">
@@ -28,8 +28,8 @@
     <RelativeLayout
         android:id="@+id/rlt_layout_chatbox"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_above="@+id/rlt_hiddenPersonalChat"
         android:orientation="horizontal">
 
         <ImageButton
@@ -37,6 +37,14 @@
             android:layout_height="match_parent"
             android:id="@+id/add_something"
             android:src="@drawable/ic_add_di_chat"
+            android:background="@color/White"/>
+
+        <ImageButton
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="match_parent"
+            android:id="@+id/add_something_back"
+            android:src="@drawable/ic_apps_black_24dp"
+            android:visibility="gone"
             android:background="@color/White"/>
 
         <EditText
@@ -62,4 +70,52 @@
             android:layout_height="match_parent"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bantuan_chat"
+        android:padding="@dimen/_10sdp"
+        android:background="@color/White"
+        android:visibility="gone"
+        android:id="@+id/rlt_hiddenPersonalChat">
+
+        <ImageButton
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:id="@+id/img_photo"
+            android:src="@drawable/ic_photo_video"/>
+
+        <ImageButton
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:id="@+id/img_berkas"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_toRightOf="@+id/img_photo"
+            android:src="@drawable/ic_file"/>
+
+        <ImageButton
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:id="@+id/img_report"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_toRightOf="@+id/img_berkas"
+            android:src="@drawable/ic_file"/>
+
+        <ImageButton
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:id="@+id/img_jadwal"
+            android:layout_toRightOf="@+id/img_report"
+            android:src="@drawable/ic_file"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#dfdfdf"
+        android:id="@+id/bantuan_chat"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"/>
 </RelativeLayout>
