@@ -14,6 +14,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
+        android:id="@+id/scrlv_detailPro"
         android:layout_height="match_parent">
 
         <LinearLayout
@@ -85,6 +86,8 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:id="@+id/imgV_detailPro_keyPerformance"
                     android:src="@drawable/img_chart"/>
 
                 <Button
@@ -93,11 +96,21 @@
                     android:id="@+id/btn_detailPro_createTask"
                     android:text="Create Task"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="List Task"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:id="@+id/rcyView_detailTask"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_height="wrap_content">
+                    android:id="@+id/rcyView_detailProjectTask"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_marginBottom="@dimen/_25sdp">
 
                 </android.support.v7.widget.RecyclerView>
 
