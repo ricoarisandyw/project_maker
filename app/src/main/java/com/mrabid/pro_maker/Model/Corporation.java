@@ -12,6 +12,8 @@ public class Corporation {
     private String description;
     private String id_parent;
 
+    public Corporation(){}
+
     public Corporation(String id_corporation, String name, String description, String address, String id_owner, String id_parent) {
         this.id_corporation = id_corporation;
         this.name = name;

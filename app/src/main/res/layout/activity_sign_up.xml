@@ -33,7 +33,6 @@
                 android:textSize="@dimen/_26sdp"
                 android:textStyle="bold" />
 
-
             <EditText
                 android:id="@+id/et_signup_nama"
                 android:layout_width="match_parent"

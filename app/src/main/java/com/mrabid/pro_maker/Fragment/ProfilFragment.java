@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import com.google.gson.Gson;
 import com.mrabid.pro_maker.Activity.AddCorporationActivity;
-import com.mrabid.pro_maker.Activity.myCorporationActivity;
+import com.mrabid.pro_maker.Activity.MyCorporationActivity;
 import com.mrabid.pro_maker.R;
 
 public class ProfilFragment extends Fragment {
@@ -34,7 +34,7 @@ public class ProfilFragment extends Fragment {
         myCorporation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), myCorporationActivity.class);
+                Intent i = new Intent(getActivity(), MyCorporationActivity.class);
                 startActivity(i);
             }
         });

@@ -36,7 +36,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/chart"/>
+        android:src="@drawable/img_chart"/>
 
     <Button
         android:layout_width="wrap_content"

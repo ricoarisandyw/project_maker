@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
-        android:background="@drawable/cm"
+        android:background="@drawable/img_cm"
         android:layout_marginLeft="@dimen/_10sdp"
         android:id="@+id/img_profile_received"
         android:layout_marginTop="@dimen/_5sdp"/>
@@ -33,7 +33,7 @@
             android:id="@+id/txt_content_received"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bubble_chat_received"
+            android:background="@drawable/bg_bubble_chat_received"
             android:padding="@dimen/_8sdp"
             android:textColor="@color/White"
             android:layout_marginRight="@dimen/_40sdp"

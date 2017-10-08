@@ -37,7 +37,7 @@ public class RecycleViewPersonalAdapter extends RecyclerView.Adapter<RecycleView
     public void onBindViewHolder(final RecycleViewPersonalAdapter.ViewHolder holder, int position) {
         final Personal p = listPersonal.get(position);
 
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.cm);
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.img_cm);
         Bitmap circularBitmap = CircleConverter.getRoundedCornerBitmap(bitmap, 100);
         holder.profile.setImageBitmap(circularBitmap);
         holder.judul.setText(""+p.getNama());

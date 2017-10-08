@@ -38,7 +38,7 @@ public class PersonalFragment extends Fragment {
     public void coba(){
         List<Personal> personal = new ArrayList<>();
         for(int i = 0;i<10;i++)
-        personal.add(new Personal(R.drawable.cm,"abid Ganteng","saya ingin bahagia",R.id.img_about_personal));
+        personal.add(new Personal(R.drawable.img_cm,"abid Ganteng","saya ingin bahagia",R.id.img_about_personal));
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

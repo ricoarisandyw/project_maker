@@ -16,7 +16,7 @@
             android:id="@+id/img_list_corp"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
-            android:background="@drawable/building"
+            android:background="@drawable/img_building"
             app:civ_border_color="#FF000000"
             app:civ_border_width="@dimen/_2sdp" />
 
@@ -35,7 +35,7 @@
         <ProgressBar
             android:id="@+id/prog_status_corp"
             style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="300dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/txt_judul_personal"
             android:layout_below="@+id/txt_corp_title"
@@ -45,12 +45,12 @@
             android:progress="77" />
 
         <ImageView
-            android:id="@+id/img_about_corp"
+            android:id="@+id/img_itemcorp_edit"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/_8sdp"
-            android:background="@drawable/ic_info_black_24dp" />
+            android:background="@drawable/ic_pencil_black" />
 
     </RelativeLayout>
 

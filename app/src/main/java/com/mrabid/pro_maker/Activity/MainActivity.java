@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i=0;i<dotscount;i++){
             dots[i] =new ImageView(this);
-            dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.nonactivedot));
+            dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_nonactivedot));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(8,0,8,0);
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             sliderDotspanel.addView(dots[i],params);
         }
 
-        dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.activedot));
+        dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_activedot));
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
             @Override
@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 for (int i=0;i<dotscount;i++){
-                    dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.nonactivedot));
+                    dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_nonactivedot));
                 }
-                dots[position].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.activedot));
+                dots[position].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_activedot));
             }
 
             @Override

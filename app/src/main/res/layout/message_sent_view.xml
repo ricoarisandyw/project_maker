@@ -14,7 +14,7 @@
             android:id="@+id/txt_content_sent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bubble_chat_sent"
+            android:background="@drawable/bg_bubble_chat_sent"
             android:padding="@dimen/_8sdp"
             android:textColor="@color/White"
             android:layout_marginLeft="@dimen/_40sdp"

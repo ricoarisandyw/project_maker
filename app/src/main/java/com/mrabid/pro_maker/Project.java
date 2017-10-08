@@ -38,9 +38,6 @@ public class Project extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         getSupportActionBar().setTitle("MyTask");
 
-
-
-
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 

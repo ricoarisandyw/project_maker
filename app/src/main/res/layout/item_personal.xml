@@ -10,7 +10,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_60sdp"
-        android:background="@drawable/cm"
+        android:background="@drawable/img_cm"
         app:civ_border_width="@dimen/_2sdp"
         app:civ_border_color="#FF000000"
         android:id="@+id/img_profile_personal"/>

@@ -1,6 +1,5 @@
 package com.mrabid.pro_maker.Activity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -21,17 +19,16 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mrabid.pro_maker.Adapter.RecyclerViewCorporationAdapter;
-import com.mrabid.pro_maker.Adapter.RecyclerViewTaskAdapter;
 import com.mrabid.pro_maker.Model.Corporation;
-import com.mrabid.pro_maker.Model.Task;
 import com.mrabid.pro_maker.R;
+import com.mrabid.pro_maker.Rak.Rak;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class myCorporationActivity extends AppCompatActivity {
+public class MyCorporationActivity extends AppCompatActivity {
 
     Gson gson;
     Button btnMyCorp;
@@ -45,22 +42,35 @@ public class myCorporationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_corporation);
 
+        Rak CorpDB = new Rak(this,"Corp",new Corporation());
+
         id_user = loadData("id_user");
         Log.d("Reponse", id_user);
 
-        adapter = new RecyclerViewCorporationAdapter(myCorporationActivity.this, corporations);
+        adapter = new RecyclerViewCorporationAdapter(MyCorporationActivity.this, corporations);
         recyclerView = (RecyclerView) findViewById(R.id.rcyView_Corporation);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(myCorporationActivity.this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(MyCorporationActivity.this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-        
-        Init();
 
+        int i=0;
+        while(i<10){
+            corporations.add(new Corporation(
+                    "1",
+                    "Name Corp",
+                    "Corp Desc",
+                    "Corp Address",
+                    "1",
+                    "2"
+            ));
+            i++;
+        }
+        adapter.notifyDataSetChanged();
     }
 
     public void Init(){
-        RequestQueue requestQueue = Volley.newRequestQueue(myCorporationActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(MyCorporationActivity.this);
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("M/d/yy hh:mm a");
         gson = gsonBuilder.create();
@@ -87,7 +97,7 @@ public class myCorporationActivity extends AppCompatActivity {
                                 Log.d("Response Name", corp.getName());
                             }
                         }else{
-                            Toast.makeText(myCorporationActivity.this, response, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyCorporationActivity.this, response, Toast.LENGTH_SHORT).show();
                         }
                         adapter.notifyDataSetChanged();
                     }

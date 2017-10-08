@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         ImageView logo = (ImageView) findViewById(R.id.logo_splash);
-        logo.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.launcher));
+        logo.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.img_launcher));
 
         //Membuat splash screen
         new Handler().postDelayed(new Runnable() {
