@@ -14,10 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mrabid.pro_maker.Activity.AddProjectActivity;
-import com.mrabid.pro_maker.Adapter.RecycleViewPersonalAdapter;
-import com.mrabid.pro_maker.Adapter.RecyclerViewTaskAdapter;
-import com.mrabid.pro_maker.Model.Personal;
-import com.mrabid.pro_maker.Model.Task;
+import com.mrabid.pro_maker.Adapter.RecyclerViewProjectAdapter;
+import com.mrabid.pro_maker.Model.Projects;
 import com.mrabid.pro_maker.R;
 import com.mrabid.pro_maker.Activity.SettingActivity;
 
@@ -31,19 +29,19 @@ public class MyProjectFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = (RecyclerView)getActivity().findViewById(R.id.rcyView_group);
-        coba();
+        recyclerView = (RecyclerView)getActivity().findViewById(R.id.rcy_projectList);
+        project();
     }
 
 
-    public void coba(){
-        List<Task> task = new ArrayList<>();
+    public void project(){
+        List<Projects> project = new ArrayList<>();
         for(int i = 0;i<10;i++)
-            task.add(new Task("ProjectMaker","lalalala","Abid Ganteng","Waiting..","ProjectMaker"));
+            project.add(new Projects("ProjectMaker","lalalalala","13-12-2017"));
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new RecyclerViewTaskAdapter(getActivity(),task));
+        recyclerView.setAdapter(new RecyclerViewProjectAdapter(getActivity(),project));
     }
 
 

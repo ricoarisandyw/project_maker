@@ -39,8 +39,8 @@
         </activity>
         <activity android:name=".Activity.MyCorporationActivity" />
         <activity android:name=".Activity.ChatActivity" />
-        <activity android:name=".Activity.detailTaskActivity" />
-        <activity android:name=".DetailCorpActivity"></activity>
+        <activity android:name=".Activity.detailTaskActivity"></activity>
+        <activity android:name=".Activity.detailProjectActivity"></activity>
     </application>
 
 </manifest>

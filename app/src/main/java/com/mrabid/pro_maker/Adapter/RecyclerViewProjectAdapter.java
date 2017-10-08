@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mrabid.pro_maker.Activity.detailProjectActivity;
 import com.mrabid.pro_maker.Model.Projects;
 import com.mrabid.pro_maker.Project;
 import com.mrabid.pro_maker.R;
@@ -32,7 +33,7 @@ public class RecyclerViewProjectAdapter extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public RecyclerViewProjectAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.project_view,null));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_project,null));
     }
 
     @Override
@@ -47,6 +48,8 @@ public class RecyclerViewProjectAdapter extends RecyclerView.Adapter<RecyclerVie
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("nama",p.getNama());
                 editor.commit();
+                Intent i = new Intent(context,detailProjectActivity.class);
+                context.startActivity(i);
             }
         });
     }
@@ -64,10 +67,9 @@ public class RecyclerViewProjectAdapter extends RecyclerView.Adapter<RecyclerVie
 
         public ViewHolder(View itemView) {
             super(itemView);
-
-            nama = (TextView) itemView.findViewById(R.id.txt_nameViewProject);
-            date = (TextView) itemView.findViewById(R.id.txt_ViewDateLine);
-            rlt = (RelativeLayout)itemView.findViewById(R.id.rlt_projectView);
+            nama = (TextView) itemView.findViewById(R.id.tv_nameProject);
+            date = (TextView) itemView.findViewById(R.id.tv_dateViewProject);
+            rlt = (RelativeLayout)itemView.findViewById(R.id.rlt_listProject);
 
         }
     }

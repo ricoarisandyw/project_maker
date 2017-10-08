@@ -18,8 +18,8 @@
             android:id="@+id/rlt_photo_personal_chat">
 
             <ImageView
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:src="@drawable/ic_photo_black_24dp"
                 android:id="@+id/dialog_foto_chat_personal"/>
             <TextView
@@ -40,8 +40,8 @@
             android:layout_toRightOf="@+id/rlt_photo_personal_chat">
 
             <ImageView
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:src="@drawable/ic_file_filter"
                 android:id="@+id/dialog_file_chat_personal"/>
             <TextView
@@ -63,7 +63,7 @@
 
             <ImageView
                 android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:src="@drawable/ic_photo_black_24dp"
                 android:id="@+id/dialog_video_chat_personal"/>
             <TextView
@@ -84,8 +84,8 @@
             android:layout_toRightOf="@+id/rlt_video_personal_chat">
 
             <ImageView
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:src="@drawable/ic_file_filter"
                 android:id="@+id/dialog_tag_chat_personal"/>
             <TextView
