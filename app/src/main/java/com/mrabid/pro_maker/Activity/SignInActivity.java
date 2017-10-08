@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mrabid.pro_maker.Project;
 import com.mrabid.pro_maker.R;
+import com.mrabid.pro_maker.SharedPref;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,11 +38,15 @@ public class SignInActivity extends AppCompatActivity {
     Gson gson;
     RequestQueue requestQueue;
     EditText etUsername, etPassword;
+    String username, password;
+    SharedPref sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        sharedPref = new SharedPref(this);
 
         progress=new ProgressDialog(SignInActivity.this);
         progress.setMessage("Please Wait...");
@@ -49,6 +54,7 @@ public class SignInActivity extends AppCompatActivity {
         progress.setIndeterminate(true);
         progress.setProgress(0);
         progress.setCanceledOnTouchOutside(false);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -63,14 +69,24 @@ public class SignInActivity extends AppCompatActivity {
         etUsername = (EditText) findViewById(R.id.et_signin_email);
         etPassword = (EditText) findViewById(R.id.et_signin_password);
 
+        username = sharedPref.loadData("username");
+        password = sharedPref.loadData("password");
+        progress.show();
+        Validate(username, password);
+
         Button signIn = (Button)findViewById(R.id.btn_signIn);
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progress.show();
-                Validate();
+                Validate(etUsername.getText().toString(),etPassword.getText().toString());
             }
         });
+
+
+        //Urgent Only While Connection error
+        startActivity(new Intent(SignInActivity.this, Project.class));
+
     }
 
 
@@ -88,7 +104,7 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
-    public void Validate(){
+    public void Validate(final String username, final String  password){
         requestQueue = Volley.newRequestQueue(SignInActivity.this);
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("M/d/yy hh:mm a");
@@ -112,7 +128,9 @@ public class SignInActivity extends AppCompatActivity {
                         if(posts.getStatus()==1){
                             Intent i = new Intent(SignInActivity.this, Project.class);
                             String id_user = posts.getResult().get(0).getId_user();
-                            saveData("id_user", id_user);
+                            sharedPref.saveData("username", username);
+                            sharedPref.saveData("password", password);
+                            sharedPref.saveData("id_user", id_user);
                             startActivity(i);
                         }else{
                             Toast.makeText(SignInActivity.this, "Wrong Username/Password", Toast.LENGTH_SHORT).show();
@@ -134,8 +152,8 @@ public class SignInActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("username", etUsername.getText().toString());
-                params.put("password", etPassword.getText().toString());
+                params.put("username", username);
+                params.put("password", password);
                 return params;
             }
         };

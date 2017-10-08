@@ -18,16 +18,27 @@ public class SharedPref {
     }
 
 
-    public static void saveData(String name, String value, Context context){
-        SharedPreferences prefs = context.getSharedPreferences("UserData", 0);
+    public static void saveData(String name, String value){
+        SharedPreferences prefs;
+        if(context==null){
+            prefs = activity.getSharedPreferences("UserData", 0);
+        }else{
+            prefs = context.getSharedPreferences("UserData", 0);
+        }
+
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(name, value);
         Log.d("Reponse", name + " masuk :"+ value);
         editor.commit();
     }
 
-    public static String loadData(String name, Context context){
-        SharedPreferences prefs = context.getSharedPreferences("UserData", 0);
+    public static String loadData(String name){
+        SharedPreferences prefs;
+        if(context==null){
+             prefs = activity.getSharedPreferences("UserData", 0);
+        }else{
+            prefs = context.getSharedPreferences("UserData", 0);
+        }
         String data = prefs.getString(name,"");
         Log.d("Reponse", name + " keluar:"+ data);
         return data;

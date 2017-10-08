@@ -4,31 +4,15 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.mrabid.pro_maker.Activity.AddCorporationActivity;
-import com.mrabid.pro_maker.Activity.SignInActivity;
 import com.mrabid.pro_maker.Activity.myCorporationActivity;
-import com.mrabid.pro_maker.Model.Corporation;
-import com.mrabid.pro_maker.Project;
 import com.mrabid.pro_maker.R;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ProfilFragment extends Fragment {
 
@@ -58,7 +42,7 @@ public class ProfilFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.profil_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_profil, container, false);
 
     }
 }

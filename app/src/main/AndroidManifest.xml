@@ -21,12 +21,14 @@
             android:name=".Activity.SignInActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".Project" />
-        <activity android:name=".Activity.AddTaskActivity"
+        <activity
+            android:name=".Activity.AddTaskActivity"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".Activity.SettingActivity" />
-        <activity android:name=".Activity.AddProjectActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".Activity.AddProjectActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".Activity.AddCorporationActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
@@ -36,7 +38,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.myCorporationActivity" />
-        <activity android:name=".Activity.ChatActivity"></activity>
+        <activity android:name=".Activity.ChatActivity" />
+        <activity android:name=".Activity.detailTaskActivity"></activity>
     </application>
 
 </manifest>

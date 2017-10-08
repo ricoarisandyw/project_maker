@@ -22,10 +22,13 @@ import java.util.List;
 public class RecyclerViewCorporationAdapter extends RecyclerView.Adapter<RecyclerViewCorporationAdapter.ViewHolder> {
     Context context;
     List<Corporation> listCorporation;
+    SharedPref sharedPref;
 
     public RecyclerViewCorporationAdapter(Context context, List<Corporation> listCorporation) {
         this.context = context;
         this.listCorporation = listCorporation;
+        sharedPref = new SharedPref(context);
+
     }
 
     @Override
@@ -66,8 +69,8 @@ public class RecyclerViewCorporationAdapter extends RecyclerView.Adapter<Recycle
                 //DO SOMETHING HERE
                 Intent i = new Intent(v.getContext(), AddProjectActivity.class);
                 i.putExtra("id_corp", p.getId_corporation());
-                SharedPref.saveData("name_corporation", p.getName(), context);
-                SharedPref.saveData("id_corporation", p.getId_corporation(), context);
+                sharedPref.saveData("name_corporation", p.getName());
+                sharedPref.saveData("id_corporation", p.getId_corporation());
                 v.getContext().startActivity(i);
                 ((Activity)context).finish();
             }

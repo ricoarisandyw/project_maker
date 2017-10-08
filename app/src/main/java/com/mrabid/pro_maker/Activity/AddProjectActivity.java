@@ -54,11 +54,14 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
     ArrayList<Corporation> corporations = new ArrayList<>();
     Gson gson;
     String gIdUser, gIdCorp, gNameCorp;
+    SharedPref sharedPref;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_project);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        sharedPref = new SharedPref(this);
 
         RelativeLayout btnDate = (RelativeLayout)findViewById(R.id.rlt_datePickerP);
         RelativeLayout btnTime = (RelativeLayout)findViewById(R.id.rlt_timePickerP);
@@ -81,9 +84,9 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
         etTitle = (EditText) findViewById(R.id.edt_title_task);
         etDescription = (EditText) findViewById(R.id.edt_desc_task);
 
-        gIdUser = SharedPref.loadData("id_user", AddProjectActivity.this);
-        gIdCorp = SharedPref.loadData("id_corporation", AddProjectActivity.this);
-        gNameCorp = SharedPref.loadData("name_corporation", AddProjectActivity.this);;
+        gIdUser = sharedPref.loadData("id_user");
+        gIdCorp = sharedPref.loadData("id_corporation");
+        gNameCorp = sharedPref.loadData("name_corporation");;
 
         //----------------toolbar-----------------------------//
         setSupportActionBar(toolbar);
@@ -210,7 +213,7 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("M/d/yy hh:mm a");
         gson = gsonBuilder.create();
-        String id_user = SharedPref.loadData("id_user", AddProjectActivity.this);
+        String id_user = sharedPref.loadData("id_user");
         String url = "https://jcaproject.000webhostapp.com/projectmaker/api/corporation_filter.php?id_owner="+id_user;
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
