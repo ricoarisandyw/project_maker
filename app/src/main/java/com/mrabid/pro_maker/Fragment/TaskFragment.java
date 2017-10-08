@@ -35,8 +35,10 @@ public class TaskFragment extends Fragment {
 
     public void coba(){
         List<Task> task = new ArrayList<>();
-        for(int i = 0;i<10;i++)
-            task.add(new Task("ProjectMaker","lalalala","Abid Ganteng","Waiting..","ProjectMaker"));
+        for(int i = 0;i<5;i++)
+            task.add(new Task("ProjectMaker","lalalala","Abid Ganteng","child","ProjectMaker"));
+        for(int i = 0;i<5;i++)
+            task.add(new Task("Parent","lalalala","Abid Ganteng","me","ProjectMaker"));
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

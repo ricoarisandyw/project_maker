@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/rlt_personal_click"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_10sdp">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_profile_personal"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:src="@drawable/img_invo"
+        app:civ_border_color="#fff"
+        app:civ_border_width="0dp"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_judul_personal"
+        android:text="Abid Ganteng"
+        android:layout_toRightOf="@+id/img_profile_personal"
+        android:textColor="@color/Black"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_status_personal"
+        android:text="Hi , I'm using ProjectManager "
+        android:layout_below="@+id/txt_judul_personal"
+        android:layout_toRightOf="@+id/img_profile_personal"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <ImageView
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:id="@+id/img_about_personal"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/ic_info_black_24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:background="#DDDDDD"
+        android:layout_below="@+id/img_about_personal"
+        android:layout_marginTop="35dp"
+        android:layout_height="1dp" />
+
+</RelativeLayout>

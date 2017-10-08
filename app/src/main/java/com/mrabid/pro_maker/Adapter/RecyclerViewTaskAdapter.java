@@ -6,8 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.mrabid.pro_maker.Activity.ChatActivity;
 import com.mrabid.pro_maker.Model.Task;
 import com.mrabid.pro_maker.R;
 import com.mrabid.pro_maker.Activity.detailTaskActivity;
@@ -34,6 +38,17 @@ public class RecyclerViewTaskAdapter extends RecyclerView.Adapter<RecyclerViewTa
         holder.pemberi.setText(""+p.getid_doer());
         holder.nama.setText(""+p.getName());
         holder.status.setText(""+p.getStatus());
+        if(p.getStatus().equalsIgnoreCase("me")){
+            holder.pbPercent.setText("");
+            holder.pb.setVisibility(View.INVISIBLE);
+            holder.imgUpload.setVisibility(View.VISIBLE);
+        }
+        holder.imgUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ChatActivity.class));
+            }
+        });
 
         holder.rl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,17 +65,21 @@ public class RecyclerViewTaskAdapter extends RecyclerView.Adapter<RecyclerViewTa
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView  nama,pemberi,status;
+        TextView  nama,pemberi,status, pbPercent;
         RelativeLayout rl;
+        ProgressBar pb;
+        ImageView imgUpload;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             rl = (RelativeLayout) itemView.findViewById(R.id.list_task);
+            pbPercent = (TextView) itemView.findViewById(R.id.txt_persenProgress);
+            pb = (ProgressBar) itemView.findViewById(R.id.progressBar_task);
             pemberi = (TextView) itemView.findViewById(R.id.txt_pemberiViewTask);
             nama = (TextView)itemView.findViewById(R.id.txt_nameViewTask);
             status = (TextView)itemView.findViewById(R.id.txt_statusViewTask);
-
+            imgUpload = (ImageView) itemView.findViewById(R.id.img_itemTask_update);
         }
     }
 }
