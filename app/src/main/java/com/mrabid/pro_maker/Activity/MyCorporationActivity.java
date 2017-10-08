@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MyCorporationActivity extends AppCompatActivity {
+public class myCorporationActivity extends AppCompatActivity {
 
     Gson gson;
     Button btnMyCorp;
@@ -47,9 +47,9 @@ public class MyCorporationActivity extends AppCompatActivity {
         id_user = loadData("id_user");
         Log.d("Reponse", id_user);
 
-        adapter = new RecyclerViewCorporationAdapter(MyCorporationActivity.this, corporations);
+        adapter = new RecyclerViewCorporationAdapter(myCorporationActivity.this, corporations);
         recyclerView = (RecyclerView) findViewById(R.id.rcyView_Corporation);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(MyCorporationActivity.this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(myCorporationActivity.this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
@@ -70,7 +70,7 @@ public class MyCorporationActivity extends AppCompatActivity {
     }
 
     public void Init(){
-        RequestQueue requestQueue = Volley.newRequestQueue(MyCorporationActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(myCorporationActivity.this);
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("M/d/yy hh:mm a");
         gson = gsonBuilder.create();
@@ -97,7 +97,7 @@ public class MyCorporationActivity extends AppCompatActivity {
                                 Log.d("Response Name", corp.getName());
                             }
                         }else{
-                            Toast.makeText(MyCorporationActivity.this, response, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(myCorporationActivity.this, response, Toast.LENGTH_SHORT).show();
                         }
                         adapter.notifyDataSetChanged();
                     }

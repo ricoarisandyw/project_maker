@@ -1,9 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.mrabid.pro_maker.DetailCorpActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="175dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@drawable/img_invo"
+            android:scaleType="centerCrop"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/img_building"
+            />
+
+        <RelativeLayout
+            android:layout_marginTop="50dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Name of Corp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:id="@+id/tv_detailCorp_title"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Owner Name"
+                android:layout_alignParentRight="true"
+                android:id="@+id/tv_detailCorp_owner"
+                android:layout_below="@id/tv_detailCorp_title"
+                android:textSize="14dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Members : 20"
+                android:drawableRight="@drawable/ic_pencil_black"
+                android:layout_below="@id/tv_detailCorp_owner"
+                android:id="@+id/tv_detailCorp_members"
+                android:textSize="14dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Address"
+                android:drawableRight="@drawable/ic_pencil_black"
+                android:id="@+id/tv_detailCorp_address"
+                android:layout_below="@id/tv_detailCorp_members"
+                android:textSize="14dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Projet : 20/23"
+                android:id="@+id/tv_detailCorp_project"
+                android:drawableRight="@drawable/ic_pencil_black"
+                android:layout_below="@id/tv_detailCorp_address"
+                android:textSize="14dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Since :"
+                android:drawableRight="@drawable/ic_pencil_black"
+                android:id="@+id/tv_detailCorp_since"
+                android:layout_below="@id/tv_detailCorp_project"
+                android:textSize="14dp"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_below="@id/tv_detailCorp_since"
+                android:layout_height="100dp"
+                android:weightSum="1.2"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="01"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="#008744"
+                    android:layout_weight="0.4"
+                    android:textSize="30dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Jan"
+                    android:gravity="center"
+                    android:textSize="30dp"
+                    android:layout_margin="10dp"
+                    android:background="#0057e7"
+                    android:layout_weight="0.4"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="30dp"
+                    android:text="'07"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.4"
+                    android:background="#ffa700"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+            
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

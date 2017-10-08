@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mrabid.pro_maker.Activity.AddProjectActivity;
+import com.mrabid.pro_maker.DetailCorpActivity;
 import com.mrabid.pro_maker.Model.Corporation;
 import com.mrabid.pro_maker.Project;
 import com.mrabid.pro_maker.R;
@@ -74,7 +75,7 @@ public class RecyclerViewCorporationAdapter extends RecyclerView.Adapter<Recycle
             @Override
             public void onClick(View v) {
                 //DO SOMETHING HERE
-                Intent i = new Intent(v.getContext(), Project.class);
+                Intent i = new Intent(v.getContext(), DetailCorpActivity.class);
                 i.putExtra("id_corp", p.getId_corporation());
                 sharedPref.saveData("name_corporation", p.getName());
                 sharedPref.saveData("id_corporation", p.getId_corporation());

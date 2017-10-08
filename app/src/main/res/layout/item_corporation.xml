@@ -52,6 +52,13 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:background="@drawable/ic_pencil_black" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:background="#DDDDDD"
+            android:layout_below="@+id/img_itemcorp_edit"
+            android:layout_marginTop="35dp"
+            android:layout_height="1dp" />
+
     </RelativeLayout>
 
 

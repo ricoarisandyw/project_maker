@@ -30,6 +30,7 @@
             android:name=".Activity.AddProjectActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".Activity.AddCorporationActivity" />
+        <activity android:name=".DetailCorpActivity"/>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MyCorporationActivity" />
+        <activity android:name=".Activity.myCorporationActivity" />
         <activity android:name=".Activity.ChatActivity" />
         <activity android:name=".Activity.detailTaskActivity"></activity>
         <activity android:name=".Activity.detailProjectActivity"></activity>
