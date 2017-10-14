@@ -2,6 +2,7 @@ package com.mrabid.pro_maker.Activity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -32,6 +33,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mrabid.pro_maker.Model.Corporation;
+import com.mrabid.pro_maker.Model.Projects;
 import com.mrabid.pro_maker.R;
 import com.mrabid.pro_maker.ResponseGlobal;
 import com.mrabid.pro_maker.SharedPref;
@@ -56,6 +58,8 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
     String gIdUser, gIdCorp, gNameCorp;
     SharedPref sharedPref;
 
+    String corporation;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_project);
@@ -67,33 +71,44 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
         RelativeLayout btnTime = (RelativeLayout)findViewById(R.id.rlt_timePickerP);
         txtDate = (TextView)findViewById(R.id.txt_datelineP);
         txtTime = (TextView)findViewById(R.id.txt_timeP);
+        Button btnSubmit = (Button) findViewById(R.id.btn_addproject_submit);
+        etTitle = (EditText) findViewById(R.id.edt_title_task);
+        etDescription = (EditText) findViewById(R.id.edt_desc_task);
 
         Init();
 
+
+
         spnListCorp = (Spinner) findViewById(R.id.spn_addprojcet_namecorp);
-        adapter = new ArrayAdapter<String>(this,
+        spnListCorp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                corporation = parent.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        /*adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, ListCorporations);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spnListCorp.setAdapter(adapter);
-        spnListCorp.setOnItemSelectedListener(this);
+        spnListCorp.setOnItemSelectedListener(this);*/
 
-        Button btnSubmit = (Button) findViewById(R.id.btn_addproject_submit);
 
-        etTitle = (EditText) findViewById(R.id.edt_title_task);
-        etDescription = (EditText) findViewById(R.id.edt_desc_task);
-
-        gIdUser = sharedPref.loadData("id_user");
+        gIdUser = sharedPref.loadData("id");
         gIdCorp = sharedPref.loadData("id_corporation");
         gNameCorp = sharedPref.loadData("name_corporation");;
 
         //----------------toolbar-----------------------------//
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-        upArrow.setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
-        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        //final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        //upArrow.setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
+        //getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setTitle("Create New Projects");
         toolbar.setTitleTextColor(Color.WHITE);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -123,6 +138,7 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Submit();
+
             }
         });
 
@@ -143,9 +159,8 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
                 timePickerDialog.show();
             }
         });
+
     }
-
-
 
     //
     @Override
@@ -153,7 +168,6 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -165,16 +179,19 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("M/d/yy hh:mm a");
         gson = gsonBuilder.create();
+        String token_user = sharedPref.loadData("token");
 
-        String url = "https://jcaproject.000webhostapp.com/projectmaker/api/project_input.php";
+
+        String url = "http://jca.atrama-studio.com/backend/web/api-project?access-token="+token_user;
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
                 {
                     @Override
                     public void onResponse(String response) {
                         Log.d("Response", response);
-                        ResponseGlobal posts =  gson.fromJson(response, ResponseGlobal.class);
-                        if(posts.getStatus()==1){
+                        responseProject posts =  gson.fromJson(response, responseProject.class);
+                        if(posts.getResult().toString().equalsIgnoreCase("true")){
+                            Toast.makeText(AddProjectActivity.this, "Create ProjectActivity berhasil", Toast.LENGTH_SHORT).show();
                             finish();
                         }else{
                             Toast.makeText(AddProjectActivity.this, response, Toast.LENGTH_SHORT).show();
@@ -196,11 +213,12 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("name", etTitle.getText().toString());
                 params.put("id_creator", gIdUser);
-                params.put("deadline", etDescription.getText().toString());
+                params.put("name", etTitle.getText().toString());
+                params.put("deadline", txtDate.toString()+"-"+txtTime.toString());
+                params.put("id_corporation", "2");
                 params.put("description", etDescription.getText().toString());
-                params.put("id_corporation", gIdCorp);
+
                 return params;
             }
         };
@@ -213,8 +231,8 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("M/d/yy hh:mm a");
         gson = gsonBuilder.create();
-        String id_user = sharedPref.loadData("id_user");
-        String url = "https://jcaproject.000webhostapp.com/projectmaker/api/corporation_filter.php?id_owner="+id_user;
+        String token_user = sharedPref.loadData("token");
+        String url = "https://jca.atrama-studio.com/backend/web/api-corporation?access-token="+token_user;
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
                 {
@@ -239,10 +257,13 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
                                     id_corp[0] = i;
                                 }
                                 i++;
+
                             }
                             adapter.notifyDataSetChanged();
                             spnListCorp.setAdapter(adapter);
                             spnListCorp.setSelection(id_corp[0]);
+                            startActivity(new Intent(AddProjectActivity.this,MainActivity.class));
+
                         }else{
                             Toast.makeText(AddProjectActivity.this, response, Toast.LENGTH_SHORT).show();
                         }
@@ -294,13 +315,41 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
         String id_corp = corporations.get(pos).getId_corporation();
         Toast.makeText(AddProjectActivity.this, id_corp, Toast.LENGTH_SHORT).show();
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
     }
+
+    public class responseProject{
+        private String result;
+        private String message;
+        private ArrayList<Projects> data;
+
+        public String getResult() {
+            return result;
+        }
+
+        public void setResult(String result) {
+            this.result = result;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public ArrayList<Projects> getData() {
+            return data;
+        }
+
+        public void setData(ArrayList<Projects> data) {
+            this.data = data;
+        }
+    }
+
 }

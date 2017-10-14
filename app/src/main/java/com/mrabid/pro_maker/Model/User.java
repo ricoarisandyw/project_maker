@@ -5,15 +5,42 @@ package com.mrabid.pro_maker.Model;
  */
 
 public class User {
-    private long id_user;
+    private int id;
     private String username;
+    private String token;
+    private String password;
+    private String email;
 
-    public long getId_user() {
-        return id_user;
+    public String getToken() {
+        return token;
     }
 
-    public void setId_user(long id_user) {
-        this.id_user = id_user;
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {

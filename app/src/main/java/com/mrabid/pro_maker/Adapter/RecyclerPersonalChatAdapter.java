@@ -34,7 +34,7 @@ public class RecyclerPersonalChatAdapter extends RecyclerView.Adapter<RecyclerPe
     @Override
     public RecyclerPersonalChatAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         for(int i=0;i<listMessages.size();i++){
-            if(listMessages.get(i).getId_sender()== user.getId_user()){
+            if(listMessages.get(i).getId_sender()== user.getId()){
                 return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.message_sent_view,null));
             }else {
             }

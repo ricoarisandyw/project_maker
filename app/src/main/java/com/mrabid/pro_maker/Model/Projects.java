@@ -9,37 +9,67 @@ import java.util.Date;
  */
 
 public class Projects {
-    public String nama;
-    public String desc;
-    public String dateLine;
+    private int id_project;
+    private int id_creator;
+    public String name;
+    public String deadline;
+    private int id_corporation;
+    public String description;
 
-    public Projects(String nama, String desc, String dateLine) {
-        this.nama = nama;
-        this.desc = desc;
-        this.dateLine = dateLine;
+    public Projects(int id_project, int id_creator, String name, String deadline, int id_corporation, String description) {
+        this.id_project = id_project;
+        this.id_creator = id_creator;
+        this.name = name;
+        this.deadline = deadline;
+        this.id_corporation = id_corporation;
+        this.description = description;
     }
 
-    public String getNama() {
-        return nama;
+    public int getId_project() {
+        return id_project;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setId_project(int id_project) {
+        this.id_project = id_project;
     }
 
-    public String getDesc() {
-        return desc;
+    public int getId_creator() {
+        return id_creator;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setId_creator(int id_creator) {
+        this.id_creator = id_creator;
     }
 
-    public String getDateLine() {
-        return dateLine;
+    public String getName() {
+        return name;
     }
 
-    public void setDateLine(String dateLine) {
-        this.dateLine = dateLine;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
+    }
+
+    public int getId_corporation() {
+        return id_corporation;
+    }
+
+    public void setId_corporation(int id_corporation) {
+        this.id_corporation = id_corporation;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

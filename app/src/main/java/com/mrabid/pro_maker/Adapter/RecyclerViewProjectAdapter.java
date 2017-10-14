@@ -2,18 +2,18 @@ package com.mrabid.pro_maker.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mrabid.pro_maker.Activity.detailProjectActivity;
 import com.mrabid.pro_maker.Model.Projects;
@@ -41,16 +41,21 @@ public class RecyclerViewProjectAdapter extends RecyclerView.Adapter<RecyclerVie
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Projects p = listProjects.get(position);
-        holder.nama.setText(""+p.getNama());
-        holder.date.setText(""+p.getDateLine());
+        holder.nama.setText(""+p.getName());
+        holder.date.setText(""+p.getDeadline());
+        int random = (int)Math.random()*100+1;
+        holder.progressBar.setProgress(random);
         holder.rlt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences prefs = context.getSharedPreferences("UserData",0);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("nama",p.getNama());
-                editor.commit();
                 Intent i = new Intent(context,detailProjectActivity.class);
+                i.putExtra("id_project",p.getId_project());
+                i.putExtra("id_creator",String.valueOf(p.getId_creator()));
+                i.putExtra("name",p.getName());
+                i.putExtra("deadline",p.getDeadline());
+                i.putExtra("id_corporation",String.valueOf(p.getId_corporation()));
+                i.putExtra("description",p.getDescription());
+                Log.d("Response",p.getDescription());
                 context.startActivity(i);
             }
         });
@@ -58,7 +63,7 @@ public class RecyclerViewProjectAdapter extends RecyclerView.Adapter<RecyclerVie
         holder.option.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               showMenu(v,p.getNama());
+               showMenu(v,p.getName());
             }
         });
     }
@@ -85,7 +90,6 @@ public class RecyclerViewProjectAdapter extends RecyclerView.Adapter<RecyclerVie
         MenuPopupHelper menuHelper = new MenuPopupHelper(context, (MenuBuilder) popup.getMenu(), v);
         menuHelper.setForceShowIcon(true);
         menuHelper.show();
-       // popup.show();
     }
 
     @Override
@@ -96,6 +100,7 @@ public class RecyclerViewProjectAdapter extends RecyclerView.Adapter<RecyclerVie
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nama,option;
         TextView date;
+        ProgressBar progressBar;
         RelativeLayout rlt;
 
         public ViewHolder(View itemView) {
@@ -104,6 +109,7 @@ public class RecyclerViewProjectAdapter extends RecyclerView.Adapter<RecyclerVie
             date = (TextView) itemView.findViewById(R.id.tv_dateViewProject);
             rlt = (RelativeLayout)itemView.findViewById(R.id.rlt_listProject);
             option = (TextView)itemView.findViewById(R.id.tv_detailPro_Option);
+            progressBar = (ProgressBar)itemView.findViewById(R.id.progressBar_project_item);
 
         }
     }

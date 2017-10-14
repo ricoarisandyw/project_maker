@@ -12,7 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -25,9 +29,11 @@ import java.util.ArrayList;
 public class detailProjectActivity extends AppCompatActivity {
 
     Toolbar mtoolbar;
-    TextView mnamaProject;
+    TextView mnamaProject,mtanggal,mcreated,mdescrib;
     Button createTaskDetailProject;
     RecyclerView detailTaskProject;
+    RelativeLayout descRelative;
+    ImageView up,down;
     ScrollView scroll;
     ArrayList<Task> mtaskProjectList;
     RecyclerViewTaskAdapter adapter;
@@ -40,8 +46,14 @@ public class detailProjectActivity extends AppCompatActivity {
         mtoolbar = (Toolbar)findViewById(R.id.toolbar);
         createTaskDetailProject = (Button)findViewById(R.id.btn_detailPro_createTask);
         mnamaProject = (TextView)findViewById(R.id.tv_detailPro_nameProject);
+        mtanggal = (TextView)findViewById(R.id.tv_detailPro_deadLine);
+        mcreated = (TextView)findViewById(R.id.tv_detailPro_CreatedBy);
+        mdescrib= (TextView)findViewById(R.id.tv_detailPro_desc);
         detailTaskProject = (RecyclerView)findViewById(R.id.rcyView_detailProjectTask);
         scroll = (ScrollView)findViewById(R.id.scrlv_detailPro);
+        up = (ImageView) findViewById(R.id.imgV_detailPro_descrip_up);
+        down = (ImageView) findViewById(R.id.imgV_detailPro_descrip_down);
+        descRelative = (RelativeLayout)findViewById(R.id.rlt_detailPro_descrip);
 
         //set scrollview always top
         scroll.smoothScrollTo(0, 0);
@@ -51,15 +63,40 @@ public class detailProjectActivity extends AppCompatActivity {
         //=================================toolbar=========================================//
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-        upArrow.setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
-        getSupportActionBar().setHomeAsUpIndicator(upArrow);
-        getSupportActionBar().setTitle("NamaProject");
+//        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+//        upArrow.setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
+//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        getSupportActionBar().setTitle(getIntent().getExtras().getString("name"));
         mtoolbar.setTitleTextColor(Color.WHITE);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        //isi dengan nama project nanti(user.getNamaProject);
-        mnamaProject.setText("Nama Project");
+        //isi
+        mnamaProject.setText(getIntent().getExtras().getString("name"));
+        mtanggal.setText(getIntent().getExtras().getString("deadline"));
+        mcreated.setText(getIntent().getExtras().getString("id_creator"));
+        mdescrib.setText(getIntent().getExtras().getString("description"));
+
+
+        //description
+        up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                descRelative.setVisibility(View.VISIBLE);
+                up.setVisibility(View.INVISIBLE);
+                down.setVisibility(View.VISIBLE);
+                Animation slideDown = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_down_desc_project);
+                descRelative.startAnimation(slideDown);
+            }
+        });
+
+        down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                descRelative.setVisibility(View.GONE);
+                up.setVisibility(View.VISIBLE);
+                down.setVisibility(View.INVISIBLE);
+            }
+        });
 
         //Ketika penekanan tombol mengirim nama project
         createTaskDetailProject.setOnClickListener(new View.OnClickListener() {

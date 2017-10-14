@@ -5,5 +5,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="threeDots">&#8942;</string>
 
+    <string-array name="corporation">
+        <item>Naruto</item>
+        <item>Barbie</item>
+        <item>One Piece</item>
+        <item>Dragon Ball</item>
+    </string-array>
 
 </resources>

@@ -106,6 +106,7 @@
                 android:textColor="@color/Black"
                 android:layout_toRightOf="@+id/img_time"
                 android:layout_height="wrap_content"
+                android:entries="@array/corporation"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:text="Project id"/>
 

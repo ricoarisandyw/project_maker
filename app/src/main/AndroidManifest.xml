@@ -20,7 +20,7 @@
         <activity
             android:name=".Activity.SignInActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Project" />
+        <activity android:name=".ProjectActivity" />
         <activity
             android:name=".Activity.AddTaskActivity"
             android:theme="@style/AppTheme"

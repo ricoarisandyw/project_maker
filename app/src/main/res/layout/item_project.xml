@@ -44,12 +44,12 @@
         android:layout_below="@id/tv_dateViewProject"
         android:layout_marginTop="@dimen/_13sdp"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:id="@+id/progressBar_project" />
+        android:id="@+id/progressBar_project_item" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/progressBar_project"
+        android:layout_toRightOf="@+id/progressBar_project_item"
         android:text=" 70%"
         android:id="@+id/txt_persenProgress"
         android:textColor="@color/Black"

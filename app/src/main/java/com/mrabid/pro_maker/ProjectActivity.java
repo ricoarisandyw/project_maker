@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.mrabid.pro_maker.Adapter.MyPagerAdapter;
 
-public class Project extends AppCompatActivity {
+public class ProjectActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private TabLayout   tabLayout;
@@ -30,8 +30,8 @@ public class Project extends AppCompatActivity {
         setContentView(R.layout.activity_project);
 
         String id_user = loadData("id_user");
-        Toast.makeText(getApplicationContext(),  id_user, Toast.LENGTH_SHORT).show();
-        Log.d("Response", id_user);
+        Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show();
+        //Log.d("Response", id_user);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
