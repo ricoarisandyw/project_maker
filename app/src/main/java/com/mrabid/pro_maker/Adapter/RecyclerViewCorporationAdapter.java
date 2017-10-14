@@ -10,16 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mrabid.pro_maker.Activity.AddProjectActivity;
 import com.mrabid.pro_maker.DetailCorpActivity;
 import com.mrabid.pro_maker.Model.Corporation;
-import com.mrabid.pro_maker.Project;
 import com.mrabid.pro_maker.R;
 import com.mrabid.pro_maker.SharedPref;
 

@@ -49,9 +49,9 @@ public class AddTaskActivity extends AppCompatActivity {
         //----------------toolbar-----------------------------//
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-        upArrow.setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
-        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+//        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+//        upArrow.setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
+//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setTitle("Create Task");
         toolbar.setTitleTextColor(Color.WHITE);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -101,11 +101,11 @@ public class AddTaskActivity extends AppCompatActivity {
                 dialogListTask.setContentView(R.layout.projectview_layout_task);
                 dialogListTask.setTitle("List Task");
                 List<Projects> listProjects = new ArrayList<Projects>();
-                listProjects.add(new Projects("ProjectMaker","aaa","13 Spetember 2017"));
-                listProjects.add(new Projects("aaa","aaa","aaaavv"));
-                listProjects.add(new Projects("aaa","aaa","aaaavv"));
-                listProjects.add(new Projects("aaa","aaa","aaaavv"));
-                listProjects.add(new Projects("aaa","aaa","aaaavv"));
+//                listProjects.add(new Projects("ProjectMaker","aaa","13 Spetember 2017"));
+//                listProjects.add(new Projects("aaa","aaa","aaaavv"));
+//                listProjects.add(new Projects("aaa","aaa","aaaavv"));
+//                listProjects.add(new Projects("aaa","aaa","aaaavv"));
+//                listProjects.add(new Projects("aaa","aaa","aaaavv"));
                 RecyclerView rvListTask = (RecyclerView) dialogListTask.findViewById(R.id.rcyView_projectTask);
                 rvListTask.setHasFixedSize(true);
                 rvListTask.setLayoutManager(new LinearLayoutManager(AddTaskActivity.this));
