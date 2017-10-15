@@ -23,6 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mrabid.pro_maker.API.UserAPI;
 import com.mrabid.pro_maker.R;
 
 import java.util.HashMap;
@@ -30,13 +31,17 @@ import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText etName, etEmail, etPassword, etUsername;
+
+    UserAPI userAPI;
+    EditText etName, etEmail, etPassword, etUsername, etPhone;
     RequestQueue requestQueue;
     ProgressDialog progress;
     Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        userAPI = new UserAPI(SignUpActivity.this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -60,11 +65,19 @@ public class SignUpActivity extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.et_signup_email);
         etUsername = (EditText) findViewById(R.id.et_signup_username);
         etPassword = (EditText) findViewById(R.id.et_signup_password);
+        etPhone = (EditText)  findViewById(R.id.et_signup_phone);
+
         Button btnSignup = (Button) findViewById(R.id.btn_signup_signup);
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SignUp();
+                userAPI.SignUp(
+                        etUsername.getText().toString(),
+                        etPassword.getText().toString(),
+                        etEmail.getText().toString(),
+                        etName.getText().toString(),
+                        etPhone.getText().toString()
+                        );
                 progress.show();
             }
         });

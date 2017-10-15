@@ -24,12 +24,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mrabid.pro_maker.Model.User;
-import com.mrabid.pro_maker.ProjectActivity;
+import com.mrabid.pro_maker.Project;
 import com.mrabid.pro_maker.R;
 import com.mrabid.pro_maker.SharedPref;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SignInActivity extends AppCompatActivity {
@@ -58,9 +59,9 @@ public class SignInActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-//        upArrow.setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
-//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setTitle("SignIn");
         toolbar.setTitleTextColor(Color.WHITE);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -68,6 +69,10 @@ public class SignInActivity extends AppCompatActivity {
         etUsername = (EditText) findViewById(R.id.et_signin_email);
         etPassword = (EditText) findViewById(R.id.et_signin_password);
 
+        username = sharedPref.loadData("username");
+        password = sharedPref.loadData("password");
+        progress.show();
+        Validate(username, password);
 
         Button signIn = (Button)findViewById(R.id.btn_signIn);
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +85,7 @@ public class SignInActivity extends AppCompatActivity {
 
 
         //Urgent Only While Connection error
-        //startActivity(new Intent(SignInActivity.this, ProjectActivity.class));
+        startActivity(new Intent(SignInActivity.this, Project.class));
 
     }
 
@@ -105,7 +110,7 @@ public class SignInActivity extends AppCompatActivity {
         gsonBuilder.setDateFormat("M/d/yy hh:mm a");
         gson = gsonBuilder.create();
 
-        String url = "http://jca.atrama-studio.com/backend/web/auth/login";
+        String url = "https://jcaproject.000webhostapp.com/projectmaker/api/loginUsers.php";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
                 {
@@ -113,20 +118,19 @@ public class SignInActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         progress.hide();
                         responseLogin posts = new responseLogin();
+                        posts.setStatus(0);
+                        Log.d("Response", response);
                         try{
                             posts =  gson.fromJson(response, responseLogin.class);
                         }catch(Exception e){
                             Toast.makeText(SignInActivity.this, "Wrong Username/Password", Toast.LENGTH_SHORT).show();
                         }
-                        if(posts.getResult().toString().equalsIgnoreCase("true")){
-                            Intent i = new Intent(SignInActivity.this, ProjectActivity.class);
-                            Log.d("Response", posts.getResult()+" "+posts.getMessage()+" "+posts.getUserData().getId());
-                            String id = String.valueOf(posts.getUserData().getId());
-                            String token = posts.getUserData().getToken();
+                        if(posts.getStatus()==1){
+                            Intent i = new Intent(SignInActivity.this, Project.class);
+                            String id_user = posts.getResult().get(0).getId_user();
                             sharedPref.saveData("username", username);
                             sharedPref.saveData("password", password);
-                            sharedPref.saveData("id", id);
-                            sharedPref.saveData("token", token);
+                            sharedPref.saveData("id_user", id_user);
                             startActivity(i);
                         }else{
                             Toast.makeText(SignInActivity.this, "Wrong Username/Password", Toast.LENGTH_SHORT).show();
@@ -139,7 +143,7 @@ public class SignInActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Response", error.toString());
-                        Toast.makeText(SignInActivity.this, "Tolong cek paket data anda", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this, "Server busy, Try Again", Toast.LENGTH_SHORT).show();
                         progress.hide();
                     }
                 }
@@ -158,32 +162,43 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public class responseLogin{
-        private String result;
-        private String message;
-        private User userData;
+        private int status;
+        private ArrayList<Users> result;
 
-        public String getResult() {
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        public ArrayList<Users> getResult() {
             return result;
         }
 
-        public void setResult(String result) {
+        public void setResult(ArrayList<Users> result) {
             this.result = result;
         }
+    }
+    public class Users{
+        private String id_user;
+        private String username;
 
-        public String getMessage() {
-            return message;
+        public String getId_user() {
+            return id_user;
         }
 
-        public void setMessage(String message) {
-            this.message = message;
+        public void setId_user(String id_user) {
+            this.id_user = id_user;
         }
 
-        public User getUserData() {
-            return userData;
+        public String getUsername() {
+            return username;
         }
 
-        public void setUserData(User userData) {
-            this.userData = userData;
+        public void setUsername(String username) {
+            this.username = username;
         }
     }
     public void saveData(String name, String value){
