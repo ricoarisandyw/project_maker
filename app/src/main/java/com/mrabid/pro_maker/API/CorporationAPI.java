@@ -2,23 +2,18 @@ package com.mrabid.pro_maker.API;
 
 import android.app.Activity;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mrabid.pro_maker.Activity.AddCorporationActivity;
 import com.mrabid.pro_maker.Model.Corporation;
-import com.mrabid.pro_maker.ResponseGlobal;
+import com.mrabid.pro_maker.SharedPref;
 
-import java.lang.ref.ReferenceQueue;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,78 +21,199 @@ import java.util.Map;
  */
 
 public class CorporationAPI {
+    static Activity activity;
+    static Gson gson;
 
-    Activity activity;
-
-    public Respon Post(final Corporation corporation) {
-        final Respon[] respon = {new Respon()};
+    public static void load(Activity activity, final ResponseRead callBack) {
+        RequestQueue requestQueue = Volley.newRequestQueue(activity);
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("M/d/yy hh:mm a");
         final Gson gson = gsonBuilder.create();
-        RequestQueue requestQueue = Volley.newRequestQueue(activity);
-        String url = "https://jcaproject.000webhostapp.com/projectmaker/api/corporation_input.php";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
+
+        SharedPref sharedPref = new SharedPref(activity);
+        String id_user = sharedPref.loadData("id_user");
+        String token = sharedPref.loadData("token");
+
+        String url = "http://jca.atrama-studio.com/backend/web/api-corporation/view?id_user="+id_user+"&access-token="+token;
+        StringRequest postRequest = new StringRequest(
+                Request.Method.POST,
+                url,
+                new com.android.volley.Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        respon[0] =  gson.fromJson(response, Respon.class);
+                        ResponseAPI responseAPI = gson.fromJson(response,ResponseAPI.class);
+                        Corporation[] corporations = null;
+                        if(responseAPI.isResult()){
+                            corporations = gson.fromJson(response,Corporation[].class);
+                        }
+                        callBack.onSuccess(corporations);
                     }
                 },
-                new Response.ErrorListener() {
+                new com.android.volley.Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Response", error.toString());
+                        Log.d("Read UserAPI", error.toString());
                     }
                 }
         ) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-//                params.put("name", corporation.);
                 return params;
             }
         };
         requestQueue.add(postRequest);
-        return respon[0];
     }
 
-    public List<Corporation> Get() {
-        List<Corporation> corporationList;
-
+    public static void save(Activity activity, final ResponseCreate callBack, final Corporation corporation){
         RequestQueue requestQueue = Volley.newRequestQueue(activity);
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("M/d/yy hh:mm a");
-        Gson gson = gsonBuilder.create();
-        String url = "https://jcaproject.000webhostapp.com/projectmaker/api/corporation_input.php";
+        gson = gsonBuilder.create();
+
+        String url = "https://jcaproject.000webhostapp.com/projectmaker/api/corporation_filter.php?id_owner=";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
+                new com.android.volley.Response.Listener<String>()
+                {
                     @Override
                     public void onResponse(String response) {
-
+                        ResponseAPI responseAPI = gson.fromJson(response,ResponseAPI.class);
+                        Corporation corporationData = null;
+                        if(responseAPI.isResult()){
+                            corporationData = gson.fromJson(response,Corporation.class);
+                        }
+                        callBack.onSuccess(corporationData);
                     }
                 },
-                new Response.ErrorListener() {
+                new com.android.volley.Response.ErrorListener()
+                {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Response", error.toString());
+                        if(error.toString().contains("Timeout")){
+                            Log.d("Read E", error.toString());
+                            Log.d("Read E", "Time Out");
+                        }
                     }
                 }
         ) {
             @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-//                    params.put("name", etName.getText().toString());
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("name",corporation.getName());
+                params.put("address",corporation.getAddress());
+                params.put("description",corporation.getDescription());
+                params.put("id_owner",corporation.getId_owner());
+                params.put("parent",corporation.getId_parent());
                 return params;
             }
         };
         requestQueue.add(postRequest);
         //close --JSON--
-        return null;
     }
 
-    public class Respon{
+    public static void update(Activity activity, final ResponseUpdate callBack, final Corporation corporation){
+        RequestQueue requestQueue = Volley.newRequestQueue(activity);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setDateFormat("M/d/yy hh:mm a");
+        gson = gsonBuilder.create();
 
+        String url = "https://jcaproject.000webhostapp.com/projectmaker/api/corporation_filter.php?id_owner=";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new com.android.volley.Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        ResponseAPI responseAPI = gson.fromJson(response,ResponseAPI.class);
+                        Corporation corporationData = null;
+                        if(responseAPI.isResult()){
+                            corporationData = gson.fromJson(response,Corporation.class);
+                        }
+                        callBack.onSuccess(corporationData);
+                    }
+                },
+                new com.android.volley.Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        if(error.toString().contains("Timeout")){
+                            Log.d("Read E", error.toString());
+                            Log.d("Read E", "Time Out");
+                        }
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("name",corporation.getName());
+                params.put("address",corporation.getAddress());
+                params.put("description",corporation.getDescription());
+                params.put("id_owner",corporation.getId_owner());
+                params.put("parent",corporation.getId_parent());
+                return params;
+            }
+        };
+        requestQueue.add(postRequest);
+        //close --JSON--
+    }
+
+    public static void delete(Activity activity, final ResponseDelete callBack, final int id_corporation){
+        RequestQueue requestQueue = Volley.newRequestQueue(activity);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setDateFormat("M/d/yy hh:mm a");
+        gson = gsonBuilder.create();
+
+        String url = "https://jcaproject.000webhostapp.com/projectmaker/api/corporation_filter.php?id_owner=";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new com.android.volley.Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        ResponseAPI responseAPI = gson.fromJson(response,ResponseAPI.class);
+                        callBack.onSuccess(responseAPI);
+                    }
+                },
+                new com.android.volley.Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        if(error.toString().contains("Timeout")){
+                            Log.d("Read E", error.toString());
+                            Log.d("Read E", "Time Out");
+                        }
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                return params;
+            }
+        };
+        requestQueue.add(postRequest);
+        //close --JSON--
+    }
+
+    public interface ResponseRead {
+        public void onSuccess(Corporation[] corporations);
+    }
+
+    public interface ResponseCreate{
+        public void onSuccess(Corporation corporations);
+    }
+
+    public interface ResponseDelete{
+        public void onSuccess(ResponseAPI response);
+    }
+
+    public interface ResponseUpdate{
+        public void onSuccess(Corporation corporations);
     }
 }

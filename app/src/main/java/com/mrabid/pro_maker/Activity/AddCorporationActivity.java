@@ -99,7 +99,7 @@ public class AddCorporationActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         progress.hide();
-                        Log.d("Response", response);
+                        Log.d("Read", response);
                         ResponseGlobal posts =  gson.fromJson(response, ResponseGlobal.class);
                         if(posts.getStatus()==1){
                             finish();
@@ -113,7 +113,7 @@ public class AddCorporationActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Response", error.toString());
+                        Log.d("Read", error.toString());
                     }
                 }
         ) {

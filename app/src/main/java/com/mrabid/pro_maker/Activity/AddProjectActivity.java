@@ -188,7 +188,7 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
                 {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("Response", response);
+                        Log.d("Read", response);
                         responseProject posts =  gson.fromJson(response, responseProject.class);
                         if(posts.getResult().toString().equalsIgnoreCase("true")){
                             Toast.makeText(AddProjectActivity.this, "Create ProjectActivity berhasil", Toast.LENGTH_SHORT).show();
@@ -202,7 +202,7 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("Response", error.toString());
+                        Log.d("Read", error.toString());
                         if(error.toString().contains("Timeout")){
                             Submit();
                         }
@@ -238,10 +238,10 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
                 {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("Response", response);
+                        Log.d("Read", response);
                         AddProjectActivity.responseInit posts =  gson.fromJson(response, AddProjectActivity.responseInit.class);
                         if(posts.getStatus()==1){
-                            Log.d("Response", response);
+                            Log.d("Read", response);
                             int i = 0;
                             for (Corporation corp : posts.getCorporation()){
                                 corporations.add(new Corporation(
@@ -275,8 +275,8 @@ public class AddProjectActivity extends AppCompatActivity implements AdapterView
                     public void onErrorResponse(VolleyError error) {
                         // error
                         if(error.toString().contains("Timeout")){
-                            Log.d("Response E", error.toString());
-                            Log.d("Response E", "Time Out");
+                            Log.d("Read E", error.toString());
+                            Log.d("Read E", "Time Out");
                         }
                     }
                 }

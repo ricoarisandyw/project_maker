@@ -55,7 +55,7 @@ public class RecyclerViewProjectAdapter extends RecyclerView.Adapter<RecyclerVie
                 i.putExtra("deadline",p.getDeadline());
                 i.putExtra("id_corporation",String.valueOf(p.getId_corporation()));
                 i.putExtra("description",p.getDescription());
-                Log.d("Response",p.getDescription());
+                Log.d("Read",p.getDescription());
                 context.startActivity(i);
             }
         });

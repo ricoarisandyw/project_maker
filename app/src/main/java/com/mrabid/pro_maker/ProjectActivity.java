@@ -30,8 +30,8 @@ public class ProjectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_project);
 
         String id_user = loadData("id_user");
-        Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show();
-        //Log.d("Response", id_user);
+        Toast.makeText(this, "ResponseLogin Berhasil", Toast.LENGTH_SHORT).show();
+        //Log.d("Read", id_user);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

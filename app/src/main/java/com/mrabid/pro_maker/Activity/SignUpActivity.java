@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mrabid.pro_maker.API.UserAPI;
+import com.mrabid.pro_maker.Model.User;
 import com.mrabid.pro_maker.R;
 
 import java.util.HashMap;
@@ -40,17 +41,12 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        userAPI = new UserAPI(SignUpActivity.this);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-//        upArrow.setColorFilter(getResources().getColor(R.color.White), PorterDuff.Mode.SRC_ATOP);
-//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
-        getSupportActionBar().setTitle("SignUp");
+        getSupportActionBar().setTitle("ResponseSignUp");
         toolbar.setTitleTextColor(Color.WHITE);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
@@ -71,14 +67,18 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userAPI.SignUp(
-                        etUsername.getText().toString(),
-                        etPassword.getText().toString(),
-                        etEmail.getText().toString(),
-                        etName.getText().toString(),
-                        etPhone.getText().toString()
-                        );
-                progress.show();
+                UserAPI.SignUp(SignUpActivity.this, new UserAPI.ResponseSignUp() {
+                    @Override
+                    public void onSuccess(User user) {
+                        Toast.makeText(SignUpActivity.this,user.getToken(),Toast.LENGTH_SHORT).show();
+                    }
+                },
+                    etUsername.getText().toString(),
+                    etPassword.getText().toString(),
+                    etEmail.getText().toString(),
+                    etName.getText().toString(),
+                    etPhone.getText().toString()
+                );
             }
         });
     }
@@ -93,75 +93,6 @@ public class SignUpActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-        }
-    }
-
-    public void SignUp(){
-        requestQueue = Volley.newRequestQueue(SignUpActivity.this);
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("M/d/yy hh:mm a");
-        gson = gsonBuilder.create();
-
-        String url = "https://jcaproject.000webhostapp.com/projectmaker/api/signup.php";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>()
-                {
-                    @Override
-                    public void onResponse(String response) {
-                        progress.hide();
-                        Log.d("Response", response);
-                        responseLogin posts =  gson.fromJson(response, responseLogin.class);
-                        Log.d("Response", posts.getMsg());
-                        if(posts.getStatus()==1){
-                            Intent i = new Intent(SignUpActivity.this, SignInActivity.class);
-                            startActivity(i);
-                        }else{
-                            Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Response", error.toString());
-                    }
-                }
-        ) {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("name", etName.getText().toString());
-                params.put("username", etUsername.getText().toString());
-                params.put("email", etEmail.getText().toString());
-                params.put("password", etPassword.getText().toString());
-                return params;
-            }
-        };
-        requestQueue.add(postRequest);
-        //close --JSON--
-    }
-
-    public class responseLogin{
-        private int status;
-        private String msg;
-
-        public int getStatus() {
-            return status;
-        }
-
-        public void setStatus(int status) {
-            this.status = status;
-        }
-
-        public String getMsg() {
-            return msg;
-        }
-
-        public void setResult(String msg) {
-            this.msg= msg;
         }
     }
 

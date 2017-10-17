@@ -66,13 +66,13 @@ public class MyProjectFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         responseProject posts = new responseProject();
-                        Log.d("Response", response);
+                        Log.d("Read", response);
                             try{
                                 posts =  gson.fromJson(response, responseProject.class);
                             }catch(Exception e){
                                 Toast.makeText(getActivity(), "Wrong Username/Password", Toast.LENGTH_SHORT).show();
                             }
-                        Log.d("Response", String.valueOf(posts.getProjectData().get(1).getName()));
+                        Log.d("Read", String.valueOf(posts.getProjectData().get(1).getName()));
                         if(posts.getResult().toString().equalsIgnoreCase("true")) {
                             if (posts.getProjectData() == null) {
                                 Toast.makeText(getActivity(), "Anda tidak memiliki project untuk dikerjakan", Toast.LENGTH_SHORT).show();
@@ -99,7 +99,7 @@ public class MyProjectFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Response", error.toString());
+                        Log.d("Read", error.toString());
                         Toast.makeText(getActivity(), "Tolong cek paket data anda", Toast.LENGTH_SHORT).show();
                     }
                 }

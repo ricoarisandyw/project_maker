@@ -47,21 +47,6 @@ public class MainActivity extends AppCompatActivity {
         dotscount = adapter.getCount();
         dots = new ImageView[dotscount];
 
-        String url = "http://www.google.com/humans.txt";
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        RequestFuture<String> future = RequestFuture.newFuture();
-        StringRequest request = new StringRequest(Request.Method.GET, url, future, future);
-        requestQueue.add(request);
-
-        try {
-            String result = future.get(); // this line will block
-            Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
         for(int i=0;i<dotscount;i++){
             dots[i] =new ImageView(this);
             dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_nonactivedot));

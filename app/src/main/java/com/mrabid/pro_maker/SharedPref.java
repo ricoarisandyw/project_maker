@@ -28,7 +28,6 @@ public class SharedPref {
 
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(name, value);
-        Log.d("Reponse", name + " masuk :"+ value);
         editor.commit();
     }
 
@@ -40,7 +39,6 @@ public class SharedPref {
             prefs = context.getSharedPreferences("UserData", 0);
         }
         String data = prefs.getString(name,"");
-        Log.d("Reponse", name + " keluar:"+ data);
         return data;
     }
 

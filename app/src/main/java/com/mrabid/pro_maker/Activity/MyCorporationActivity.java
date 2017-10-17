@@ -81,10 +81,10 @@ public class myCorporationActivity extends AppCompatActivity {
                 {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("Response", response);
+                        Log.d("Read", response);
                         responseInit posts =  gson.fromJson(response, responseInit.class);
                         if(posts.getStatus()==1){
-                            Log.d("Response", response);
+                            Log.d("Read", response);
                             for (Corporation corp : posts.getCorporation()){
                                 corporations.add(new Corporation(
                                         corp.getId_corporation(),
@@ -94,7 +94,7 @@ public class myCorporationActivity extends AppCompatActivity {
                                         corp.getId_owner(),
                                         corp.getId_parent()
                                 ));
-                                Log.d("Response Name", corp.getName());
+                                Log.d("Read Name", corp.getName());
                             }
                         }else{
                             Toast.makeText(myCorporationActivity.this, response, Toast.LENGTH_SHORT).show();
@@ -108,8 +108,8 @@ public class myCorporationActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         if(error.toString().contains("Timeout")){
-                            Log.d("Response E", error.toString());
-                            Log.d("Response E", "Time Out");
+                            Log.d("Read E", error.toString());
+                            Log.d("Read E", "Time Out");
                         }
                     }
                 }
